@@ -1,0 +1,3 @@
+[submodule "themes/landscape"]
+	path = themes/landscape
+	url = git@github:quboqin/hexo-theme-landscape.git

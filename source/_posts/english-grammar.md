@@ -10,6 +10,7 @@ tags:
 1. [Overview](#I. Overview)
 2. [基本句型和补语](#II. 基本句型和补语)
 3. [句型转换](#III. 句型转换)
+4. [动词的"时(time)"和"态"(aspect)](#III. 动词的time和态aspect)
 
 ## I. Overview
 
@@ -139,3 +140,81 @@ tags:
 ##### d. 如果疑问词作主语(Subject)或主语的定语, 语序保持陈述句的语序
 1. He is ~~my brother~~. → **Who** <span style="color:red">_is he_</span>?
 2. ~~He~~ is my brother. → **Who** <span style="color:yellow">is my brother</span>?
+
+## III. 动词的<span style="color:red">"时(time)"</span>和<span style="color:yellow">"态(aspect)"</span>
+
+![](Verb Time and Aspect/Canvas 1.png)
+
+#### A. 以简驭繁的方式:
+* **Time(Past/Present/Future)**和**Aspect**分开处理
+* 当需要表达进行或被动语态时, 把Be动词当作动词, 其后的现代分词(Ving)和过去分词(Ven)视为**形容词补语**, Ving表示Continuous, Ven表示Passive Voice
+* 根据Time和Aspect变换Be动词
+![](Verb Time and Aspect/Canvas 2.png)
+
+#### B. 简单式
+##### a. 过去时间
+1. Ved
+  * The U.S. **established** diplomatic relations with the P.R.C <span style="color:red">in 1979</span>.
+  * Bush **was** the U.S. President.
+2. Was/Were + Ving
+  * I **was** _visiting_ clients the whole day <span style="color:red">yesterday</span>.
+  * I **was** _watching_ TV <span style="color:red">when I heard the doorbell</span>.
+3. Was/Were + Ven
+  * The movable print **was** _introduced_ to England <span style="color:red">in 1485</span>.
+4. Was/Were + being Ven
+  * The witness **was** _being questioned_ in count <span style="color:red">when he had a heart attack</span>.
+  * The house **was** _being painted_ <span style="color:red">when we arrived</span>.
+
+##### b. 现在时间
+1. V
+  * All mothers **love** their children.
+  * Huang **pitches** a fast ball. Li **swings**. It **looks** like a hit.
+The shortstop **fails** to stop it. It**’s** a double.
+  * Trump **is** the U.S. President.
+2. Is/Am/Are + Ving
+  * 7-Eleven **is** _selling_ big cokes at a discount <span style="color:red">this month</span>.
+3. Is/Am/Are + Ven
+  * The students’ questions **are** always _answered_ by the teacher.
+4. Is/Am/Are + being + Ven
+  * According to the NASA, the ozone layer **is** _being depleted_.
+  * How **is** the new teaching method _being tried_ there.
+
+##### c. 未来时间
+1. Will + V
+  * We **will** _rock_ you.
+  * There **will** _be_ a major election <span style="color:red">in November</span>.
+2. Will be + Ving.
+  * Don’t call me <span style="color:red">at six tomorrow</span>. I**’ll still be** _sleeping_ then.
+  * Michael **will be** _drinking_ water.
+3. Will be + Ven
+  * The building **will be** _razed_ <span style="color:red">next month</span>.
+4. ~~Will be + being Ven~~(Unusually)
+  * ~~Water **will be** _being drunk_ by Michael.~~
+
+##### d. 过去将来时
+1. <span style="color:red">We told him</span> that we **would** _clean_ the house.
+
+#### C. 完成式
+##### a. 过去时间
+1. Had + Ven
+  * Many soldiers **had** _died_ from pneumonia <span style="color:red">before the discovery of penicillin</span>.
+2. Had been + Ving
+  * I **had been** _smoking_ three packs of cigarettes a day <span style="color:red">before I decided to quit</span>.
+3. Had been + Ven
+  * Japan **had not been** _defeated_ yet <span style="color:red">by the time Germany surrendered unconditionally</span>.
+
+##### b. 现在时间
+1. Has/Have + Ven
+  * I’m sure I **have** _seen_ this face somewhere.
+2. Has/Have been + Ving
+  * We **have been** _working_ overtime <span style="color:red">for a week</span> to fill your order.
+3. Has/Have been + Ven
+  * The house **has been** _redecorated_ twice <span style="color:red">since they moved in</span>.
+
+##### c. 未来时间
+1. Will have + Ven
+  * Next April, I **will have** _worked_ here <span style="color:red">for 20 years</span>.
+2. Will have been + Ving
+  * <span style="color:red">In two more minutes</span>, she **will have been** _talking_ on the phone <span style="color:red">for three hours</span>.
+3. Will have been + Ven
+  * Come back <span style="color:red">at 5:00</span>. Your car **will have been** _fixed_ <span style="color:red">by then</span>.

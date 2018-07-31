@@ -11,6 +11,8 @@ tags:
 2. [基本句型和补语](#II. 基本句型和补语)
 3. [句型转换](#III. 句型转换)
 4. [动词的"时(time)"和"态"(aspect)](#IV. 动词的time和态aspect)
+5. [动状词](#V. 动状词Verbals)
+6. [虚拟语气](#VI. 虚拟语气)
 
 ## I. Overview
 
@@ -413,3 +415,64 @@ The shortstop **fails** to stop it. It**’s** a double.
 |wish [8]|	I wish to stay.|
 |would like [8]|(meaning "wish" or "want")	We would like to start now.|
 |yearn|	Melanie yearns to travel somewhere exotic.|
+
+#### B. 使役动词和动词原型
+1. The teacher **made** the little girl **stay** behind. <span style="color:red">let/have/make等使役动词, 后面是接原型动词, 是因为它的结果不具有不确定性, 因而不能用不定式</span>
+2. The teacher **asked** the little girl **to stay** behind.
+3. John **had** his car **painted** over. <span style="color:red">并不是使役动词后面只能用原型</span>
+
+#### C. 感官动词和动词原型
+1. I **heard** her **playing**the violin. <span style="color:red">感官动词see/hear/watch, 只能配合确实发生过的事情, 可以和现在分词一起使用.</span>
+2. I **heard **her **cry** out in pain. <span style="color:red">大叫一声, 叫声并不能持续, 所以不能用现在分词. 既不能用不定式, 也没有被动的语态, 所以只好用动词原型了</span>
+
+#### D. 动名词
+
+## VI. 虚拟语气(Moods)
+
+#### A. 叙述事实的语气(Indicative)
+##### a. 现在和过去的事情, 真假已经可以确定, 所以用叙述事实的语气. 未来的事情还没有发生, 严格说来还不能确定真假, 这就是为啥未来式要在动词前加上助动词will, 因为助动词都带有不确定性.
+1. He went to the U.S. last year.
+2. I will go to the U.S. next year to study for an MBA degree.
+
+##### b. 可以用公式计算出来, 可以当作事实来叙述
+1. The weatherman says sunrise tomorrow is at 5:32.
+2. The movie starts in 5 minutes. 同上
+
+##### c. 主从句同时叙述两件未来的事情, 需要先假定其中一件是事实, 才能推论另外一件. 所以从句用现在式
+1. I'll be ready when he comes.
+2. If you are late again, you will be fired.
+
+#### B. 条件语气(Conditional)
+##### a. 句子中加上助动词, 产生不确定的语气, 称为条件语气
+1. You are right. → You may be right.
+2. The doctor thinks it can be AIDS. → It could be anything - AIDS or a common cold.
+
+##### b. 用完成式表达对过去的猜测
+```
+must → should
+will → would
+can → could
+may → might
+并不代表时间上的变化, 而是表示更不确定的语气, 要用一种特别的方式来表达过去时间
+```
+1. It may rain any minute now. → It may have rained a little last night.
+
+#### C. 假设语气(Subjunctive)
+|Time|从句|主语|
+|-|-|
+||要把假设条件当真, 所以不能用表示不确定性的助动词|在一个假定条件下"就会/就可能"有啥结果, 所以用过去拼法的助动词|
+|<span style="color:yellow">现在时间</span>|<span style="color:yellow">现在式 → 过去式</span>|<span style="color:yellow">过去拼法的助动词 + V(动词原型)</span>|
+||If I were you|I wouldn't do it|
+||If I were to take the bribe|I could never look at other people in the eye again|
+|<span style="color:yellow">过去时间</span>|<span style="color:yellow">过去式 → 过去完成式</span>|<span style="color:yellow">过去拼法的助动词 + have + Ven(完成)</span>|
+||If I had known earlier|I might have done something|
+|未来时间|过去拼法的助动词 + V(动词原型)|过去拼法的助动词 + V(动词原型)|
+|未来时间接近条件语气, 表示不确定的语气|If an asteroid should hit the earth|man could die out|
+||If I should take the money| could you guarantee secrecy|
+|<span style="color:blue">过去 + 现在</span>|If I **had studied** harder in school|I **could qualify** for the job **now**|
+|<span style="color:blue">混合真假</span>|If I had have any money with me(**false**) → only that I didn't have any money with me(**true**)|I could have contributed to the fund drive then|
+|<span style="color:Fuchsia">句型变换</span>|It's time **you kid were in bed**||
+||**If only I had more time!**||
+||**I wish I had more time!**||
+
+#### D. 祈使语气(Imperative)

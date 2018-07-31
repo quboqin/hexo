@@ -10,7 +10,7 @@ tags:
 1. [Overview](#I. Overview)
 2. [基本句型和补语](#II. 基本句型和补语)
 3. [句型转换](#III. 句型转换)
-4. [动词的"时(time)"和"态"(aspect)](#III. 动词的time和态aspect)
+4. [动词的"时(time)"和"态"(aspect)](#IV. 动词的time和态aspect)
 
 ## I. Overview
 
@@ -141,13 +141,13 @@ tags:
 1. He is ~~my brother~~. → **Who** <span style="color:red">_is he_</span>?
 2. ~~He~~ is my brother. → **Who** <span style="color:yellow">is my brother</span>?
 
-## III. 动词的<span style="color:red">"时(time)"</span>和<span style="color:yellow">"态(aspect)"</span>
+## IV. 动词的<span style="color:red">"时(time)"</span>和<span style="color:yellow">"态(aspect)"</span>
 
 ![](Verb Time and Aspect/Canvas 1.png)
 
 #### A. 以简驭繁的方式:
 * **Time(Past/Present/Future)**和**Aspect**分开处理
-* 当需要表达进行或被动语态时, 把Be动词当作动词, 其后的现代分词(Ving)和过去分词(Ven)视为**形容词补语**, Ving表示Continuous, Ven表示Passive Voice
+* 当需要表达进行或被动语态时, 把Be动词当作动词, 句子**只有两种Aspect状态(简单态与完成态)**, 其后的现代分词(Ving)和过去分词(Ven)视为**形容词补语**, Ving表示Continuous, Ven表示Passive Voice
 * 根据Time和Aspect变换Be动词
 ![](Verb Time and Aspect/Canvas 2.png)
 
@@ -218,3 +218,198 @@ The shortstop **fails** to stop it. It**’s** a double.
   * <span style="color:red">In two more minutes</span>, she **will have been** _talking_ on the phone <span style="color:red">for three hours</span>.
 3. Will have been + Ven
   * Come back <span style="color:red">at 5:00</span>. Your car **will have been** _fixed_ <span style="color:red">by then</span>.
+
+## V. 动状词(Verbals)
+| Type | Pattern | Part of Speech | Role in Sentence | Example |
+| --- | --- | --- | --- |
+| 现在分词 | Ving | 形容词 Adjective | Complement ||
+| 过去分词 | Ven | 形容词 Adjective | Complement ||
+| 动名词(Gerund) | Ving | 名词 Noun | Subject/Object/Complement ||
+| 不定式短语 Infinitive | to do | 名词 Noun |Subject/Object/Complement||
+||| 形容词 Adjective | Subject/Object/Complement ||
+||| 副词 Adverbial | 修饰动词或形容词 ||
+
+#### A. 不定式短语 Infinitive
+##### a. 从助动词(Auxiliaries)演变到不定式短语(Infinitive)
+1. I am glad because I **can** know you. <span style="color:red">S+V+C(Clause)</span>
+2. I am glad because I **am able to** know you. <span style="color:red">助动词 → be able to</span>
+3. I am glad ~~because I am able~~ to know you. <span style="color:red">Conjunction, Subject and Be动词省略</span>
+
+|Auxiliaries|Infinitive|
+|-|-|
+|must|have to|
+|should|ought to|
+|will/would|be going to|
+|can/could|be able to|
+|may/might|be likely to|
+
+##### b. 都有不确定的语气
+1. He is right. <span style="color:red">他是对的</span>
+2. He **may be** right. <span style="color:red">他可能式对的</span>
+3. He seems **to be** right. <span style="color:red">他好像是对的</span>
+
+##### c. 都是用完成式来表达相对过去的时间
+1. 现在进行中
+  * It **must be** _raining_ now. 现在一定下雨了
+2. 未来的推测
+  * It **may** _rain_ any minutes.
+  * It **might** even _snow_。
+3. 对过去的推测
+  * It **must** _have rained_ last night. 昨晚一定下过雨了
+  * It **seems to** _have rained_ last night. 昨晚好像下过雨
+
+##### c. Infinitive VS Gerund
+1. plan
+  * They plan that they **will** marry next month.
+  * They plan ~~that they **are**~~ to marry next month.
+  * They **plan to marry** next month.
+2. avoid
+  * I **avoid making** the same mistake twice.
+3. hate
+  * I hate I **must** say, but I think you're mistaken.
+  * I hate ~~I **have**~~ to say, but I think you're mistaken.
+  * I **hate to** say this, but I think you're mistaken.
+4. like/dislike
+  * I **like to be** the first.
+  * I **don't like to wait** too long.
+  * I **dislike standing** in long lines. <span style="color:red">dislike没有"必须"(have to)的暗示</span>
+5. try
+  * I always **try to be** on time.
+  * Why don't you **try being** late for a change? 你何不故意迟到一次呢？
+6. remember
+  * Please **remember to give** me a wake-up call at 6:00 tomorrow.
+  * I **remember calling** her at 6:00 last night.
+7. shop
+  * The speaker **stopped talking** at the second bell.
+  * The speaker **stopped a second to drink** some water.
+
+8. Verbs Followed by Gerunds
+  * 9 = verb followed by a gerund OR a noun + an infinitive
+  * 13 = verb followed by a gerund OR an infinitive with a difference in meaning
+  * 14 = verb followed by a gerund OR an infinitive with little difference in meaning
+
+|verb|example|
+|-|-|
+|admit	|He admitted cheating on the test.|
+|advise [9]	|The doctor generally advised drinking low-fat milk.|
+|allow [9]	|Ireland doesn't allow smoking in bars.|
+|anticipate	|I anticipated arriving late.|
+|appreciate	|I appreciated her helping me.|
+|avoid	|He avoided talking to her.|
+|begin [14]	|I began learning Chinese.|
+|can't bear [14]	|He can't bear having so much responsibility.|
+|can't help	|He can't help talking so loudly.|
+|can't see	|I can't see paying so much money for a car.|
+|can't stand [14]	|He can't stand her smoking in the office.|
+|cease [14]	|The government ceased providing free healthcare.|
+|complete	|He completed renovating the house.|
+|consider	|She considered moving to New York.|
+|continue [14]	|He continued talking.|
+|defend	|The lawyer defended her making such statements.|
+|delay	|He delayed doing his taxes.|
+|deny	|He denied committing the crime.|
+|despise	|She despises waking up early.|
+|discuss	|We discussed working at the company.|
+|dislike	|She dislikes working after 5 PM.|
+|don't mind	|I don't mind helping you.|
+|dread [13]	|She dreads getting up at 5 AM.|
+|encourage [9]	|He encourages eating healthy foods.|
+|enjoy	|We enjoy hiking.|
+|finish [13]	|He finished doing his homework.|
+|forget [13]	|I forgot giving you my book.|
+|hate [14]	|I hate cleaning the bathroom.|
+|imagine	|He imagines working there one day.|
+|involve	|The job involves traveling to Japan once a month.|
+|keep	|She kept interrupting me.|
+|like [14]	|She likes listening to music.|
+|love [14]	|I love swimming.|
+|mention	|He mentioned going to that college.|
+|mind	|Do you mind waiting here for a few minutes.|
+|miss	|She misses living near the beach.|
+|need [13]	|The aquarium needs cleaning.|
+|neglect [14]	|Sometimes she neglects doing her homework.|
+|permit [9]	|California does not permit smoking in restaurants.|
+|postpone	|He postponed returning to Paris.|
+|practice	|She practiced singing the song.|
+|prefer [14]	|He prefers sitting at the back of the movie theater.|
+|propose [14]	|I proposed having lunch at the beach.|
+|quit [13]	|She quit worrying about the problem.|
+|recall	|Tom recalled using his credit card at the store.|
+|recollect	|She recollected living in Kenya.|
+|recommend	|Tony recommended taking the train.|
+|regret [13]	|She regretted saying that.|
+|remember [13]	|I remember telling her the address yesterday.|
+|report	|He reported her stealing the money.|
+|require [9]	|The certificate requires completing two courses.|
+|resent	|Nick resented Debbie's being there.|
+|resist	|He resisted asking for help.|
+|risk	|He risked being caught.|
+|start [14]	|He started studying harder.|
+|stop [13]	|She stopped working at 5 o'clock.|
+|suggest	|They suggested staying at the hotel.|
+|tolerate	|I tolerated her talking.|
+|try [13]	|Sam tried opening the lock with a paperclip.|
+|understand	|I understand his quitting.|
+|urge [9]	|They urge recycling bottles and paper.|
+
+
+9. Verbs Followed by Infinitives
+  * 8 = verb followed by an infinitive OR an optional noun + an infinitive
+  * 13 = verb followed by a gerund OR an infinitive with a difference in meaning
+  * 14 = verb followed by a gerund OR an infinitive with little difference in meaning
+
+|verb|example|
+|-|----|
+|agree|	Tom agreed to help me.|
+|appear|	His health appeared to be better.|
+|arrange|	Naomi arranged to stay with her cousin in Miami.|
+|ask [8]|	She asked to leave.|
+|begin [13]|	He began to talk.|
+|can't bear [14]|	He can't bear to be alone.|
+|can't stand [14]| Nancy can't stand to work the late shift.|
+|care|	He doesn't care to participate in the activity.|
+|cease [14]|	The government ceased to provide free healthcare.|
+|choose [8]|	I chose to help.|
+|claim|	She claimed to be a princess.|
+|continue [14]|	She continued to talk.|
+|decide|	We decided to go to Hawaii.|
+|demand|	He demanded to speak to Mr. Harris.|
+|deserve|	He deserves to go to jail.|
+|dread [13]|	I dread to think what might happen.|
+|expect [8]|	They expect to arrive early.|
+|fail|	He failed to get enough money to pay for the new project.|
+|forget [13]|	I forgot to lock the door when I left.|
+|get (be allowed to)|	Debbie gets to go to the concert next week! Why can't I?|
+|happen|	She happened to be at the bank when it was robbed.|
+|hate [14]|	He hates to clean dishes.|
+|hesitate|	She hesitated to tell me the problem.|
+|hope|	I hope to begin college this year.|
+|intend|	We intend to visit you next spring.|
+|learn|	I learned to speak Japanese when I was a kid.|
+|like [14]|	Samantha likes to read.|
+|love [14]|	We love to scuba dive.|
+|manage|	He managed to open the door without the key.|
+|need [8,13]|	I need to study.|
+|neglect [14]|	She neglected to tell me the date of the meeting.|
+|offer|	Frank offered to drive us to the supermarket.|
+|plan|	We plan to go to Europe this summer.|
+|prefer [14]|	He prefers to eat at 7 PM.|
+|prepare [8]|	They prepared to take the test.|
+|pretend|	The child pretended to be a monster.|
+|promise [8]|	She promised to stop smoking.|
+|propose [14]|	Drew proposed to pay for the trip.|
+|refuse|	The guard refused to let them enter the building.|
+|regret [13]|	I regret to inform you that your application was rejected.|
+|remember [13]|	Did you remember to lock the door when you left?|
+|seem|	Nancy seemed to be disappointed.|
+|start [13]|	Marge started to talk really fast.|
+|swear|	She swore to tell the truth.|
+|tend	|He tends to be a little shy.|
+|threaten [8]|	He threatened to leave forever.|
+|try [13]|	Mary tried to lift the table, but it was too heavy.|
+|vow|	He vowed to get revenge.|
+|wait|	She waited to buy a movie ticket.|
+|want [8]|	I want to study Spanish.|
+|wish [8]|	I wish to stay.|
+|would like [8]|(meaning "wish" or "want")	We would like to start now.|
+|yearn|	Melanie yearns to travel somewhere exotic.|

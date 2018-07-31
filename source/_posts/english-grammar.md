@@ -283,7 +283,7 @@ The shortstop **fails** to stop it. It**’s** a double.
   * The speaker **stopped talking** at the second bell.
   * The speaker **stopped a second to drink** some water.
 
-8. Verbs Followed by Gerunds
+8. Verbs Followed by Gerunds [www.englishpage.com](https://www.englishpage.com/gerunds/index.htm)
   * 9 = verb followed by a gerund OR a noun + an infinitive
   * 13 = verb followed by a gerund OR an infinitive with a difference in meaning
   * 14 = verb followed by a gerund OR an infinitive with little difference in meaning
@@ -353,7 +353,7 @@ The shortstop **fails** to stop it. It**’s** a double.
 |urge [9]	|They urge recycling bottles and paper.|
 
 
-9. Verbs Followed by Infinitives
+9. Verbs Followed by Infinitives [www.englishpage.com](https://www.englishpage.com/gerunds/index.htm)
   * 8 = verb followed by an infinitive OR an optional noun + an infinitive
   * 13 = verb followed by a gerund OR an infinitive with a difference in meaning
   * 14 = verb followed by a gerund OR an infinitive with little difference in meaning

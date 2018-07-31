@@ -13,6 +13,7 @@ tags:
 4. [动词的"时(time)"和"态"(aspect)](#IV. 动词的time和态aspect)
 5. [动状词](#V. 动状词Verbals)
 6. [虚拟语气](#VI. 虚拟语气)
+7. [从句的简化](#VII. 从句的简化)
 
 ## I. Overview
 
@@ -476,3 +477,117 @@ may → might
 ||**I wish I had more time!**||
 
 #### D. 祈使语气(Imperative)
+
+## VII. 从句的简化(Reduced Clauses)
+#### A. 通用规则
+##### a. 省略从句中的主语和Be动词, 只留补语
+1. Whether ~~it is~~ insured or not(副词从句), your house, ~~which is~~ a wooden building(形容词从句), needs a fire alarm. → Whether insured or not, your house, a wooden building, needs a fire alarm.
+2. It is common courtesy ~~that one should( → is~~ to~~)~~ wear black(名词从句) while ~~one attends( → is~~ attending~~)~~ a funeral(副词从句). → It is common courtesy to wear black while attending a funeral.
+
+##### b. 没有Be动词如何处理
+1. 有助动词 → 不定式
+  * He studied hard so that he could get a scholarship. →
+    * He studied hard ~~so that he was (able)~~ to get a scholarship. →
+    * He studied hard to get scholarship.
+  * 省略后意思如果不清楚可以如此补充
+  He studied hard **so as** to get scholarship./He studied hard **in order** to get a scholarship.
+2. 没有助动词 → Ving
+  * John remembers that he saw the lady before. →
+    * John remembers seeing the lady before.
+
+#### B. 形容词从句(关系从句)的简化
+##### a. 补语为Ven
+1. Beer **which is chilled to 6 ℃** is most delicious. → Beer **chilled to 6 ℃** is most delicious.
+2. Your brother John, **who was wounded in war**, will soon be sent home. → Your brother, **wounded in war**, will soon be sent home.
+
+##### b. 补语为Ving
+1. The ship **which is coming to shore** is from Gaoxiong. → The ship **coming to shore** is from Gaoxiong.
+2. My old car, **which break down every other week**, won't last much longer. → My old car, **breaking down every other week**, won't last much longer.
+  👉 [通用规则b](##### b. 没有Be动词如何处理)
+
+##### c. 补语为不定式
+1. John is the one **who should go this time**. → John is the one **to go this time**.
+2. 关于不定式主动和被动的问题, 下面两句都是👌的
+  * John is not a man **~~whom~~ one can trust** → John is not a man **one can trust** → John is not a man **to trust**.
+  * John is not a man **who can be trusted** → John is not a man **to be trusted**.
+
+##### d. 补语为形容词或名词
+1. Hilary Clinton, **who is pretty and intelligent**, is a popular First Lady. → Hilary Clinton, **pretty and intelligent**, is a popular First Lady.
+2. Bill Clinton, **who is President of the U.S.**, is a Baby Boomer. → Bill Clinton, ** President of the U.S.**, is a Baby Boomer.
+
+#### C. 名词从句的简化
+##### a. 简化后剩下的补语式Ving形态时
+1. **That I drink good wine with friends** is my greatest enjoyment. →
+  * **Drinking good wine with friends** is my greatest enjoyment.
+2. Many husbands enjoy **that they do the cooking**. →
+  * Many husbands enjoy **doing the cooking**.
+3. He got used to(介词) **working late into the night**.
+4. His favorite pastime is **that he goes fishing on weekend**. →
+  * His favorite pastime is **going fishing on weekend**.
+5. 主语不能够省略
+  * <span style="color:yellow">S+V+O+C</span>
+    * I imagined that a beautiful girl was singing to me. →
+      * ~~I imagined singing to myself.~~ →
+      * I imagined a beautiful girl singing to me.
+  * <span style="color:yellow">用所有格</span>
+    * That he calls my girlfriend every day is too much for me. →
+      * ~~Calling my girlfriend every day  is too much for me.~~ →
+      * His calling my girlfriend every day is too much for me.
+
+##### b. 简化后剩下的补语式Ven形态时, <span style="color:red">无法取代名词</span>
+1. **That anyone is called a liar** is the greatest insult. →
+  * ~~Called a liar is the greatest insult.~~ (Wrong) →
+  * **Being called a liar** is the greatest insult.
+2. I am looking forward to(介词) **being invited** to the party
+
+##### c. <span style="color:red">名词从句中是单纯的be动词</span>
+1. **That one is a teacher** requires a lot of patience. →
+  * **Being a teacher** requires a lot of patience.
+
+2. **That he was busy** is no excuse for the negligence. →
+  * **Being busy** is no excuse for the negligence.
+
+##### d. 简化后剩下的补语是to V形态
+1. The children expect **that they can get presents for Christmas**. →
+  * The children expect **to get presents for Christmas**.
+
+2. I think it strange **that man should fear ghosts.** →
+  * I think it strange **to fear ghosts**.
+
+3. 主语不合适省略
+  * I want **that you should go**. →
+    * I want **you to go**.
+
+##### e. 疑问句的名词从句简化, 疑问词要保留, where to/how to/when to
+1. I don't known **what I should do**. →
+  * I don't known **what to do**.
+
+2. I can't decide **whether I should vote for Mary(or not)**. →
+  * I can't decide whether **to vote for Mary**.
+
+#### D. 副词从句的简化
+##### a. 简化为Ving补语
+1. While he was lying on the couch, the boy fell asleep. →
+  * ~~While~~ lying on the couch, the boy fell asleep.
+
+##### b. 没有Be动词与助动词时
+1. **Because we have nothing to do here**, we might as well go home. →
+  * **Having nothing to do here**, we might as well go home.
+2. **Although we have nothing to do here**, we can't leave early. →
+  * **Although having nothing to do here**, we can't leave early. <span style="color:red">这种相反的逻辑关系要用although来表示, 所以although不能省略</span>
+  * **Having nothing to do here**, we **still** can't leave early.
+
+##### c. 副词从句中的动词单纯是Be
+1. **As I am a student**, I can't afford to get married. →
+  * **Being a student**, I can't afford to get married. →
+  * **As a student**, I can't afford to get married.
+
+2. **Before he was in school**, he used to be a naughty child. →
+  * **Before being in school**, he used to be a naughty child.
+
+##### d. 时态的问题
+1. **After he wrote the letter**, he put it to mail. →
+  * **After writing the letter**, he put it to mail. →
+  * ~~Writing the letter, he put it to mail.~~(Wrong) →
+  * **Having written the letter**, he put it to mail.
+2. **When he had written the letter**, he put it to mail. →

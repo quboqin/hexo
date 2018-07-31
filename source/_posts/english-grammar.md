@@ -14,6 +14,8 @@ tags:
 5. [动状词](#V. 动状词Verbals)
 6. [虚拟语气](#VI. 虚拟语气)
 7. [从句的简化](#VII. 从句的简化)
+8. [介词](#VIII. 介词)
+9. [冠词](#IX. 冠词)
 
 ## I. Overview
 
@@ -591,3 +593,31 @@ may → might
   * ~~Writing the letter, he put it to mail.~~(Wrong) →
   * **Having written the letter**, he put it to mail.
 2. **When he had written the letter**, he put it to mail. →
+
+## VIII. 介词(Preposition)
+#### A. 空间(Space)
+##### a. 点(spot) → at
+1. Let's meet **at the railway station**.
+
+##### b. 线(line) → on, along
+1. Then we can go over the project **on** our way to Gaoxiong.
+2. We may go walking through the windy park, or drive **along** the beach.
+
+##### c. 面(face) → on
+1. Several boats can be seen on the lake.
+2. on the internet/on Facebook/on Twitter
+
+##### d. 体(cube) → in
+1. It's cool **in the railway station**, because they have air-condition.
+
+#### B. 时间(Time)
+##### a. 点(spot) → at
+1. The earthquake struck **at** 5:27AM
+
+##### b. 长时间(during) → in
+1. Typhoon seldom come **in** Winter.
+
+##### c. 特殊日子(special) → on
+2. There'll be a concert **on** New Year's Day.
+
+## IX. 冠词(Article)

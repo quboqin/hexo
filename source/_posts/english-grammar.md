@@ -1,58 +1,58 @@
 ---
 title: English Grammar
 date: 2018-07-29 12:32:47
-tags: [english, grammar, verbals, complements, moods]
+tags: [english, grammar, complements, verbals, tenses, moods, clauses, preposition, article]
 categories:
 	- english
 ---
 
 # Table of Contents
 1. [Overview](#overview)
-2. [Sentences(基本句型) & Complements](#sentences-complements)
-3. [句型转换](#句型转换)
+2. [Sentences & Complements](#sentences-complements)
+3. [Patterns Conversion](#patterns-conversion)
 4. [Verb Tenses - Time(时) & Aspect(态)](#verb-tenses)
-5. [Verbals(动状词)](#verbals)
-6. [Moods(虚拟语气)](#moods)
-7. [Reduced Clauses(从句的简化)](#reduced-clauses)
+5. [Verbals](#verbals)
+6. [Moods](#moods)
+7. [Reduced Clauses](#reduced-clauses)
 8. [Preposition](#preposition)
 9. [Article](#article)
 
 ## <a name="overview">I. Overview</a>
 {% asset_img grammar_overview.png %}
-* This is my english grammar note depended on **旋元佑先生**的**<英语魔法师之语法俱乐部>**
-* 以下笔记是学习**旋元佑先生**的**<英语魔法师之语法俱乐部>**的学习笔记
+* This is my english grammar note depended on **旋元佑先生**的**<<英语魔法师之语法俱乐部>>**
+* 以下笔记是学习**旋元佑先生**的**<<英语魔法师之语法俱乐部>>**的学习笔记
 
 ## <a name="sentences-complements">II. Sentences & Complements</a>
-#### A. Five different verbs correspond to five basic sentence patterns(五种不同特性的动词对应五种基本句型)
+#### A. Five different verbs correspond to five basic sentence patterns (五种不同特性的动词对应五种基本句型)
 {% asset_img sentence_pattern.png %}
-##### a. S+V(Intransitive Verb)
+##### a. S+V (Intransitive Verb)
 1. John Smith died in World War Two.
 
-##### b. S+V(Transitive Verb)+O
+##### b. S+V (Transitive Verb)+O
 1. John Smith killed three enemy soldiers.
 
-##### c. S+V(Transitive Verb)+O+O
-1. <span style="color:yellow">John‘s father gave him a dog.</span>
+##### c. S+V (Transitive Verb)+O+O
+1. <span style="color:red">John‘s father gave him a dog.</span>
 
-##### d. S+V(Linking Verb)+C
+##### d. S+V (Linking Verb)+C
 1. The soup is too hot.
 2. John Smith was a soldier.
 3. John Smith was courageous.
 4. <span style="color:blue">I feel sick.</span>
 
-##### e. S+V(Linking Verb(连缀动词))+O+C
+##### e. S+V (Linking Verb)+O+C
 1. <span style="color:blue">The food made me sick.</span>
 2. Most people consider a nurse a good wife.
 3. I find the dress pretty.
 4. The meat made the dog friendly.
-5. <span style="color:yellow">John's father called him a dog.</span>
+5. <span style="color:red">John's father called him a dog.</span>
 6. His college training made him a teacher.
 7. I don't find the drug bitter.
 8. I consider the story false.
 9. He found the trip exciting.
 
-#### B. What are Linking Verbs Followed by Complements or Objects + Complements
-In English, linking verbs can not be omitted. But when we translate them into Chinese, and also if the complements are adjectives, “是” will be omitted.(英语中Be动词在句子中不能省略, 但翻译成中文，如果补语是形容词，“是”会被丢弃)
+#### B. What are Linking Verbs (Followed by Complements or Objects + Complements) （链接动词跟补语）
+In English, linking verbs can not be omitted. But when we translate them into Chinese, and also if the complements are adjectives, “是” will be omitted. (英语中Be动词在句子中不能省略, 但翻译成中文，如果补语是形容词，“是”会被丢弃)
 1. Taroko Gorge is beautiful. Taroko Gorge ~~_是_~~ 美丽的
 2. The soup is too hot. 汤 ~~_是_~~ 太烫了
 
@@ -67,7 +67,7 @@ In addition to 'Be', What else are Linking Verbs.(除了Be, 还有哪些Linking 
 | feel | I feel sick. | | |
 | taste | The drug tastes bitter. | | |
 
-Because these linking Verbs themselves have no abilities to describe something detail, so we must use complements to make sentences completed. There are two types of words can be complements.(Linking Verb本身没有叙述能力, 需要用Complement补足句子, 补语有两种词类)
+Because these linking Verbs themselves have no abilities to describe something detail, so we must use complements to make sentences completed. There are two types of words can be complements. (Linking Verb本身没有叙述能力, 需要用Complement补足句子, 补语有两种词类)
 1. noun - the same relationship with the subject (表达与主语的同等关系)
 2. adjective
 
@@ -75,10 +75,10 @@ Because these linking Verbs themselves have no abilities to describe something d
 1. I think, therefore I am. (René Descartes, 笛卡儿)
 2. To be or not to be, that is the question. (@Hamlet, 哈姆雷特)
 
-## <a name="句型转换">III. 句型转换</a>
+## <a name="patterns-conversion">III. Patterns Conversion</a>
 {% asset_img 句型转换.png %}
-#### A. Affirmative(肯定句) → Negative Sentences(否定句)
-1. Be+Not
+#### A. Affirmative Sentences (肯定句) → Negative Sentences (否定句)
+1. Be + Not
     * I **am** a girl.
       * → I **am not** a girl.
     * You **are** a student.
@@ -87,14 +87,14 @@ Because these linking Verbs themselves have no abilities to describe something d
     * This **is** Tom’s bag.
       * → This **is not** Tom’s bag.
       * → This **isn’t** Tom’s bag.
-2. 及物动词(transitive verb)/不及物动词(intransitive verb), 在动词前加助动词的否定形式, don't/doesn't/didn't
+2. Add Negative Form of Auxiliary (don't/doesn't/didn't) before Transitive Verbs (及物动词)/Intransitive Verbs (不及物动词)（在动词前加助动词的否定形式, don't/doesn't/didn't）
   * They really **know** what will happen.
     * → They really **don't know** what will happen.
   * Someone **know** what he/she is missing.
     * → Someone **doesn't know** what he/she is missing.
   * I **want** to write this.
     * → I **didn't want** to write this, but the courage to listen to different ideas is vanishing
-3. 助动词+Not, can not/should not/will not
+3. Auxiliary + Not, can not/should not/will not
   * Trump **can keep** his corruption hidden forever.
     * → Trump **cannot keep** his corruption hidden forever.
   * You **should do** that.
@@ -108,20 +108,20 @@ Because these linking Verbs themselves have no abilities to describe something d
   * I'd like to go **somewhere** hot this summer.
     * → I'm not hungry. I don't want **anything** to eat.
 
-#### B. Affirmative(肯定句) → 一般疑问句(General questions)
-1. Be动词放在句首
+#### B. Affirmative Sentences → 一般疑问句 (General Questions)
+1. Put "Be" at the begin of the sentence (Be动词放在句首)
   * **I am** in Class 6.
     * → **Are you** in Class 6?
   * **There are** some apples.
     * → **Are there** any apples?
-2. 及物动词(transitive verb)/不及物动词(intransitive verb), 加Do/Does/Did放在句首
+2. Under the Transitive verbs/Intransitive verbs, put "Do/Does/Did" at the begin of the sentence
   * **I like** red.
     * → **Do you** like red?
   * **He wants** to play soccer with friends.
     * → **Does he** want to play soccer with friends?
   * **We finished** our homework before nine yesterday.
     * → **Did you** finish your homework before nine yesterday?
-3. 助动词can/shall/will等放在句首
+3. Put auxiliary(can/shall/will/...) at the begin of the sentence
   * **I will** go to hospital tomorrow.
     * → **Will you** go to hospital tomorrow?
   * **He can** climb the tree.
@@ -136,10 +136,10 @@ Because these linking Verbs themselves have no abilities to describe something d
     * Which book shall I read? - **Any** one. It's up to you.
     * You can sit **anywhere** but here. This is my seat!
 
-#### C. Affirmative(肯定句) → 特殊疑问句
-1. 划出提问部分(对划线(斜体或黑体)部分提问).
-2. 用疑问词替代划线部分, 并移到句首.
-3. 加助动词, 并颠倒主谓
+#### C. Affirmative Sentences → Information Questions (特殊疑问句)
+1. Underline a question part (划出提问部分)
+2. Use a question word to replace this underline, put the question word at the begin of the sentence, and add auxiliary if needed, then exchange the position with the subject (用疑问词替代划线部分, 并移到句首)
+3. And add auxiliary if needed, then exchange the position with the subject (加助动词, 并颠倒主谓)
   * Mike is ~~a worker~~.
     * → **What** _is Mike_?
   * He is ~~my brother~.
@@ -164,7 +164,7 @@ Because these linking Verbs themselves have no abilities to describe something d
     * → **Whose book** _is that_?
   1* The bag is ~~yours~~.
     * → **Whose** _is the bag_?
-4. 如果疑问词作主语(Subject)或主语的定语, 语序保持陈述句的语序
+4. If the question word is subject, then keep the position (如果疑问词作主语(Subject)或主语的定语, 语序保持陈述句的语序)
   * He is ~~my brother~~.
     * → **Who** <span style="color:red">_is he_</span>?
   * ~~He~~ is my brother.
@@ -172,14 +172,16 @@ Because these linking Verbs themselves have no abilities to describe something d
 
 ## <a name="verb-tenses">IV. Verb Tenses</a>
 {% asset_img verb_time_aspect_1.png %}
-#### A. 以简驭繁的方式:
+#### A. Simplify (以简驭繁的方式)
+* One sentence only has two aspects, simple and perfect. Add "Be" or "Have/has been" before the original verb. Replace original verb with present participle(Ving) to describe in progress, and replace original verb with past participle(Ven) to describe passive voice.
+
 * **Time(Past/Present/Future)**和**Aspect**分开处理
 * 当需要表达进行或被动语态时, 把Be动词当作动词, 句子**只有两种Aspect状态(简单态与完成态)**, 其后的现代分词(Ving)和过去分词(Ven)视为**形容词补语**, Ving表示Continuous, Ven表示Passive Voice
 * 根据Time和Aspect变换Be动词
 {% asset_img verb_time_aspect_2.png %}
 
-#### B. 简单式
-##### a. 过去时间
+#### B. Simple
+##### a. Past
 1. Ved
   * The U.S. **established** diplomatic relations with the P.R.C <span style="color:red">in 1979</span>.
   * Bush **was** the U.S. President.
@@ -192,7 +194,7 @@ Because these linking Verbs themselves have no abilities to describe something d
   * The witness **was** _being questioned_ in count <span style="color:red">when he had a heart attack</span>.
   * The house **was** _being painted_ <span style="color:red">when we arrived</span>.
 
-##### b. 现在时间
+##### b. Present
 1. V
   * All mothers **love** their children.
   * Huang **pitches** a fast ball. Li **swings**. It **looks** like a hit.
@@ -206,7 +208,7 @@ The shortstop **fails** to stop it. It**’s** a double.
   * According to the NASA, the ozone layer **is** _being depleted_.
   * How **is** the new teaching method _being tried_ there.
 
-##### c. 未来时间
+##### c. Future
 1. Will + V
   * We **will** _rock_ you.
   * There **will** _be_ a major election <span style="color:red">in November</span>.
@@ -218,11 +220,11 @@ The shortstop **fails** to stop it. It**’s** a double.
 4. ~~Will be + being Ven~~(Unusually)
   * ~~Water **will be** _being drunk_ by Michael.~~
 
-##### d. 过去将来时
+##### d. Past Future
 1. <span style="color:red">We told him</span> that we **would** _clean_ the house.
 
-#### C. 完成式
-##### a. 过去时间
+#### C. Perfect
+##### a. Past
 1. Had + Ven
   * Many soldiers **had** _died_ from pneumonia <span style="color:red">before the discovery of penicillin</span>.
 2. Had been + Ving
@@ -230,7 +232,7 @@ The shortstop **fails** to stop it. It**’s** a double.
 3. Had been + Ven
   * Japan **had not been** _defeated_ yet <span style="color:red">by the time Germany surrendered unconditionally</span>.
 
-##### b. 现在时间
+##### b. Present
 1. Has/Have + Ven
   * I’m sure I **have** _seen_ this face somewhere.
 2. Has/Have been + Ving
@@ -238,7 +240,7 @@ The shortstop **fails** to stop it. It**’s** a double.
 3. Has/Have been + Ven
   * The house **has been** _redecorated_ twice <span style="color:red">since they moved in</span>.
 
-##### c. 未来时间
+##### c. Future
 1. Will have + Ven
   * Next April, I **will have** _worked_ here <span style="color:red">for 20 years</span>.
 2. Will have been + Ving
@@ -249,18 +251,18 @@ The shortstop **fails** to stop it. It**’s** a double.
 ## <a name="verbals">V. Verbals</a>
 | Type | Pattern | Part of Speech | Role in Sentence | Example |
 | --- | --- | --- | --- |
-| 现在分词 | Ving | 形容词 Adjectives | Complements ||
-| 过去分词 | Ven | 形容词 Adjectives | Complements ||
-| 动名词(Gerunds) | Ving | 名词 Nouns | Subjects/Objects/Complements ||
-| 不定式短语 Infinitive | to do | 名词 Nouns |Subjects/Objects/Complements||
-||| 形容词 Adjectives | Subjects/Objects/Complements ||
-||| 副词 Adverbials | 修饰动词或形容词 ||
+| Present Participle (现在分词) | Ving | Adjectives (形容词) | Complements ||
+| Past Participle (过去分词) | Ven | Adjectives (形容词) | Complements ||
+| Gerunds (动名词) | Ving | Nouns (名词) | Subjects/Objects/Complements ||
+| Infinitive (不定式短语)  | to do | Nouns |Subjects/Objects/Complements||
+||| Adjectives | Subjects/Objects/Complements ||
+||| Adverbials | 修饰动词或形容词 ||
 
-#### A. 不定式短语 Infinitive
-##### a. 从助动词(Auxiliaries)演变到不定式短语(Infinitive)
+#### A. Infinitive
+##### a. From Auxiliaries to Infinitive (从助动词演变到不定式短语)
 1. I am glad because I **can** know you. <span style="color:red">S+V+C(Clause)</span>
-  * → I am glad because I **am able to** know you. <span style="color:red">助动词 → be able to</span>
-    * → I am glad ~~because I am able~~ to know you. <span style="color:red">Conjunction, Subject and Be动词省略</span>
+  * → I am glad because I **am able to** know you. <span style="color:red">Auxiliaries → be able to</span>
+    * → I am glad ~~because I am able~~ to know you. <span style="color:red">Conjunction, Subject and Be are omitted</span>
 
 |Auxiliaries|Infinitive|
 |-|-|
@@ -270,18 +272,18 @@ The shortstop **fails** to stop it. It**’s** a double.
 |can/could|be able to|
 |may/might|be likely to|
 
-##### b. 都有不确定的语气
+##### b. Have an uncertain tone (都有不确定的语气)
 1. He is right. <span style="color:red">他是对的</span>
 2. He **may be** right. <span style="color:red">他可能式对的</span>
 3. He seems **to be** right. <span style="color:red">他好像是对的</span>
 
-##### c. 都是用完成式来表达相对过去的时间
-1. 现在进行中
+##### c. Use the Perfect to Express the Past (都是用完成式来表达相对过去的时间)
+1. In Progress (现在进行中)
   * It **must be** _raining_ now. <span style="color:red">现在一定下雨了</span>
-2. 未来的推测
+2. Future Speculation (未来的推测)
   * It **may** _rain_ any minutes.
   * It **might** even _snow_。
-3. 对过去的推测
+3. Speculation about the past (对过去的推测)
   * It **must** _have rained_ last night. <span style="color:red">昨晚一定下过雨了</span>
   * It **seems to** _have rained_ last night. <span style="color:red">昨晚好像下过雨</span>
 
@@ -439,50 +441,60 @@ The shortstop **fails** to stop it. It**’s** a double.
 |would like [8]|(meaning "wish" or "want")	We would like to start now.|
 |yearn|	Melanie yearns to travel somewhere exotic.|
 
-#### B. 使役动词和动词原型
-1. The teacher **made** the little girl **stay** behind. <span style="color:red">let/have/make等使役动词, 后面是接原型动词, 是因为它的结果不具有不确定性, 因而不能用不定式</span>
+#### B. Causative Verbs and Original Form(使役动词和动词原型)
+1. The teacher **made** the little girl **stay** behind.
+	<span style="color:red">
+	* Causative verbs like "let/have/make/..." are followed by original forms of verbs, because their results are not uncertain, and can not be followed by infinitives
+	* let/have/make等使役动词, 后面是接原型动词, 是因为它的结果不具有不确定性, 因而不能用不定式
+	</span>
 2. The teacher **asked** the little girl **to stay** behind.
-3. John **had** his car **painted** over. <span style="color:red">并不是使役动词后面只能用原型</span>
+3. John **had** his car **painted** over.
+	* <span style="color:red">Causative Verbs can also be followed by Ven (并不是使役动词后面只能用原型)</span>
 
-#### C. 感官动词和动词原型
-1. I **heard** her **playing**the violin. <span style="color:red">感官动词see/hear/watch, 只能配合确实发生过的事情, 可以和现在分词一起使用.</span>
-2. I **heard **her **cry** out in pain. <span style="color:red">大叫一声, 叫声并不能持续, 所以不能用现在分词. 既不能用不定式, 也没有被动的语态, 所以只好用动词原型了</span>
+#### C. Verbs of Perception and Original Form (感官动词和动词原型)
+1. I **heard** her **playing**the violin.
+	<span style="color:red">
+	* Verbs of Perception can only be used in what really happened, they come with present participle
+	* 感官动词see/hear/watch, 只能配合确实发生过的事情, 可以和现在分词一起使用.
+	</span>
+2. I **heard **her **cry** out in pain.
+	* <span style="color:red">大叫一声, 叫声并不能持续, 所以不能用现在分词. 既不能用不定式, 也没有被动的语态, 所以只好用动词原型了</span>
 
-#### D. 动名词
+#### D. Gerunds
 
 ## <a name="moods">VI. Moods</a>
-#### A. 叙述事实的语气(Indicative)
-##### a. 现在和过去的事情, 真假已经可以确定, 所以用叙述事实的语气. 未来的事情还没有发生, 严格说来还不能确定真假, 这就是为啥未来式要在动词前加上助动词will, 因为助动词都带有不确定性.
+#### A. Indicative (叙述事实的语气)
+##### a. Now or in the past, true and false can be determined, so use the tone of narrative facts. The future has not yet happened. Strictly speaking, it is still not certain whether it is true or false. This is why adding the auxiliary verb before the verb in the future mode. Because the auxiliary verbs are uncertain. (现在和过去的事情, 真假已经可以确定, 所以用叙述事实的语气. 未来的事情还没有发生, 严格说来还不能确定真假, 这就是为啥未来式要在动词前加上助动词will, 因为助动词都带有不确定性.)
 1. He went to the U.S. last year.
 2. I will go to the U.S. next year to study for an MBA degree.
 
-##### b. 可以用公式计算出来, 可以当作事实来叙述
+##### b. Can be calculated by formula, can be described as facts (可以用公式计算出来, 可以当作事实来叙述)
 1. The weatherman says sunrise tomorrow is at 5:32.
 2. The movie starts in 5 minutes. 同上
 
-##### c. 主从句同时叙述两件未来的事情, 需要先假定其中一件是事实, 才能推论另外一件. 所以从句用现在式
+##### c. The clause describes two things in the future. It is necessary to assume that one of them is a fact, and then we can infer another one. So the clause uses the present form. (主从句同时叙述两件未来的事情, 需要先假定其中一件是事实, 才能推论另外一件. 所以从句用现在式)
 1. I'll be ready when he comes.
 2. If you are late again, you will be fired.
 
-#### B. 条件语气(Conditional)
-##### a. 句子中加上助动词, 产生不确定的语气, 称为条件语气
+#### B. Conditional (条件语气)
+##### a. Adding an auxiliary verb to a sentence, producing an indeterminate tone, called conditional tone (句子中加上助动词, 产生不确定的语气, 称为条件语气)
 1. You **are** right.
   * → You **may be** right.
 2. The doctor thinks it **can be** AIDS.
   * → It **could be** anything - AIDS or a common cold.
 
-##### b. 用完成式表达对过去的猜测
+##### b. Use the perfect expression to infer which happened in the past (用完成式表达对过去的猜测)
 ```
 must → should
 will → would
 can → could
 may → might
-并不代表时间上的变化, 而是表示更不确定的语气, 要用一种特别的方式来表达过去时间
+It does not represent a change in time, but rather a more uncertain tone. It need a special way to express the past time. (并不代表时间上的变化, 而是表示更不确定的语气, 要用一种特别的方式来表达过去时间)
 ```
 1. It **may rain** any minute now.
   * → It **may have rained** a little last night.
 
-#### C. 假设语气(Subjunctive)
+#### C. Subjunctive (假设语气)
 |Time|从句|主语|
 |-|-|
 ||要把假设条件当真, 所以不能用表示不确定性的助动词|在一个假定条件下"就会/就可能"有啥结果, 所以用过去拼法的助动词|
@@ -500,7 +512,7 @@ may → might
 ||**If only I had more time!**||
 ||**I wish I had more time!**||
 
-#### D. 祈使语气(Imperative)
+#### D. Imperative (祈使语气)
 
 ## <a name="reduced-clauses">VII. Reduced Clauses</a>
 #### A. 通用规则
@@ -652,7 +664,7 @@ may → might
 ##### b. during → in
 1. Typhoon seldom come **in** Winter.
 
-##### c. special → on
+##### c. special time → on
 2. There'll be a concert **on** New Year's Day.
 
 ## <a name="article">IX. Article</a>

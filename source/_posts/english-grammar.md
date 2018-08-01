@@ -1,9 +1,9 @@
 ---
 title: English Grammar
 date: 2018-07-29 12:32:47
-tags:
-- english
-- grammar
+tags: [english, grammar, verbals, complements, moods]
+categories:
+	- english
 ---
 
 # Table of Contents
@@ -19,6 +19,8 @@ tags:
 
 ## <a name="overview">I. Overview</a>
 {% asset_img grammar_overview.png %}
+* This is my english grammar note depended on **旋元佑先生**的**<英语魔法师之语法俱乐部>**
+* 以下笔记是学习**旋元佑先生**的**<英语魔法师之语法俱乐部>**的学习笔记
 
 ## <a name="sentences-complements">II. Sentences & Complements</a>
 #### A. Five different verbs correspond to five basic sentence patterns(五种不同特性的动词对应五种基本句型)

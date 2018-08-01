@@ -1,9 +1,16 @@
 ---
 title: What’s it like to ride in a self-driving car?
-tags: [self-driving, autonomous vehicles, AVs, Uber, Waymo]
+tags:
+  - self-driving
+  - autonomous vehicles
+  - AVs
+  - Uber
+  - Waymo
 categories:
-	- Tech
+  - Tech
+date: 2018-08-01 10:29:43
 ---
+
 
 这是一篇引用 [Medium](https://medium.com/)上[Tom Standage](https://medium.economist.com/@tomstandage)最新关于无人驾驶的文章.
 
@@ -14,8 +21,8 @@ It’s thrilling for a minute or two, and then boring. Which is a good thing
 头两分钟先是兴奋, 然后就感到无聊. 但这应该是一个好事
 
 {% asset_img "steering wheels.jpeg" %}
-Where we’re going, we don’t need steering wheels 
-我们打算去哪里, 我们不需要方向盘 
+Where we’re going, we don’t need steering wheels
+我们打算去哪里, 我们不需要方向盘
 
 **Autonomous vehicles (AVs) are one of the most talked-about technologies of the moment.** And little wonder: they promise to revolutionise the transport of people, and physical goods, just as dramatically as the internet transformed the delivery of information. But they raise many questions. When will they be available? Will they be safe? Will they make car-ownership obsolete? And most of all: what is it like to ride in a car that drives itself?
 > 无人驾驶是目前谈论的最多(最热门)的技术之一. 并不奇怪: 就像互联网改变了信息的传播方式一样的戏剧性, 无人驾驶技术承诺给人员和货物的运输带来革命性的巨变的同时也带来了诸多疑问. 这些技术啥时候成熟? 它们安全吗? 它们会使人们不再需要对车辆有拥有权吗? 这其中最重要的问题是: 乘坐自动驾驶的车辆到底是一种怎样的体验?
@@ -37,7 +44,7 @@ Where we’re going, we don’t need steering wheels
 A self-driving Uber vehicle. That round thing on the top is the LIDAR sensor.
 
 **Anyway, back to Pittsburgh. Uber has hired a lot of engineers from Carnegie Mellon, and Uber’s Advanced Technologies Group, which is developing its self-driving cars, is based in the city.** The vehicle I climbed into was a modified Volvo XC90, with a bundle of extra sensors, including cameras and a spinning LIDAR unit, on its roof. Ryan, the vehicle’s safety driver, manually drove the vehicle out of the car park and onto the public roads, before pressing a button to engage the self-driving system. And then the car started driving itself.
-> 不管怎么说, 先回到让我们先回到匹兹堡. Uber已经从卡内基梅隆雇佣了大量的工程师, Uber开发它无人驾驶车辆的技术团队也坐落在匹兹堡. 我爬进去的是一辆根据Volvo XC90改造的车辆, 车顶上带着一堆外置的传感器, 包括摄像头和可以转动的LIDAR单元. Ryan, 这辆车的安全驾驶员, 在按下一个按钮启动自动驾驶系统之前, 他驾驶这辆车从停车场开出来, 并且开到马路上. 然后这辆车才开始靠它自己驾驶. 
+> 不管怎么说, 先回到让我们先回到匹兹堡. Uber已经从卡内基梅隆雇佣了大量的工程师, Uber开发它无人驾驶车辆的技术团队也坐落在匹兹堡. 我爬进去的是一辆根据Volvo XC90改造的车辆, 车顶上带着一堆外置的传感器, 包括摄像头和可以转动的LIDAR单元. Ryan, 这辆车的安全驾驶员, 在按下一个按钮启动自动驾驶系统之前, 他驾驶这辆车从停车场开出来, 并且开到马路上. 然后这辆车才开始靠它自己驾驶.
 
 **At first, the experience is thrilling. It seems like magic when the steering wheel turns by itself, or the car gently slows to a halt at a traffic light.** The autonomous Uber drove carefully but confidently in downtown traffic and light snow, slowing down when passing a school or approaching the brow of a hill, and putting its foot down (as it were) when faced with an open, straight road with no other traffic. The most noticeable difference from a human driver was that the vehicle made no attempt to avoid Pittsburgh’s notorious potholes, making the ride slightly bumpy at times. Sitting in the back seat, I could see a digital representation, displayed on an iPad mounted between the front seats, of how the car perceived the world, with other vehicles, pedestrians and cyclists highlighted in clusters of blue dots. I felt as though I was living in the future. But then, after a minute or two, the novelty wore off. When technology works as expected, it’s boring.
 > 起初的体验是很激动人心的. 当方向盘自己转动的时候, 或者这辆车渐渐的减速停在交通信号灯前, 使它看上去像魔法. 这个无人驾驶的Uber在市中心拥挤的交通和小雪的情况下小心并自信的驾驶着, 当通过学校或接近山顶的时候会降低自己的速度, 并且在遇到开阔的没有其他车辆的直行道路上, 它会踩下油门(就好像踩下油门). 和人类司机相比较最大的区别就是这辆车没有试图躲避匹兹堡名声狼藉的坑坑洼洼, 使整个驾驶过程有些轻微的颠簸. 坐在后排, 我可以看见一个数字仪表盘, 显示在一个安装在前排座椅中的的iPad上, 用高亮的一组蓝点标记其他车辆, 行人和自行车, 展现无人驾驶的Uber是如何观察这个世界的. 我感觉自己就像生活在未来世界. 但是过了几分钟, 新奇感就消失了, 技术如预期的工作, 它是显得很枯燥了.
@@ -52,7 +59,7 @@ How the car sees the world. Objects of particular interest are shown in blue.
 > Ryan, 是我的自动驾驶车里的安全司机, 有时候不得不主动接管车辆, 举例来说, 驾驶车辆绕开挡住马路的一辆卸货卡车 - (遇到这种情况)这辆自动驾驶的车辆被设定保持尽可能的安全, 并且进入等待状态, 而不是穿过马路中间的双黄线 - 并引导车辆通过最近改变车道标线的道路工程. 有几次, 当这辆车子看上去好像和其他车辆过于接近的时候, 他也接管了驾驶. Ryan解释到, 碰撞的情况其实是不会发生的, 但是如果人们认为碰撞将要发生, 他们会感到不安全. 为了给乘客提供更好的体验, 他的部分工作就是在这辆车驾驶风格中可以微调的地方标记这些实例. 每天工作结束前, 这辆车子的车载电脑上的内容会被下载下来用以分析. 每次安全司机不得不介入的情况被认定为一次"脱靶" - 对应的数据可以被分析用来如何改进这辆车的软件. 这样就可以模拟如何让车辆通过对算法的改进来做出不同的响应. 在模拟环境中测试之后, 改进的软件会在真实的车辆中更新. 我们可以一次又一次地回放，改变场景并查看结果的分布. 首次测试会在线路选取较小的子集进行, 称之为"标准的"线路, 用来测试软件的不同方面. 如果按照预期的工作, 软件会正式升级.
 
 **I spent most of my hour in a self-driving Uber discussing disengagements, algorithm design and user interfaces, which (to me, at least) are just as exciting as being in a futuristic robocar.** And even when the driving algorithms are working perfectly, there are several practical questions that still have to be addressed. For example, how will people actually hail driverless vehicles? They can’t just stop anywhere, or they will block traffic and annoy people. Human drivers can pick a good place to stop, but machines will need help. Uber has already started identifying good pick-up and drop-off points in some cities, and suggesting them to riders of human-driven vehicles. But it may be that in future, streets will have designated pick-up and drop-off areas; already, some university campuses and apartment blocks are being built with ride-hailing in mind. And how will a self-driving vehicle be able to tell that everyone is on board and ready to go? Some kind of “start” button will be needed — and a “stop” button, too, in case a rider suddenly wants to get out of the vehicle. (The driverless Uber has a “pull over” button for this.)
-> 我在这辆自动驾驶的Uber上花了大量的时间(和Ryan)讨论"脱靶"的情况, 算法设计和用户界面, 这些对于我来说和在一辆未来的robocar一样激动人心. 然而即使当驾驶算法可以完美的工作, 这里仍然有一些实际的问题需要被解决. 举例来说, 将来人们如何和无人驾驶车辆打招呼? 它们不可以随便停车, 否则它们会阻塞交通并且干扰人们(的正常活动).无人驾驶车辆如何能够告诉车上的乘客准备出发? 某种类型的"开始"按钮还是需要的 - 当乘客忽然想下车的时候, "停止"按钮也是需要的. 但是或许不久的将来, 街道会重新设计上客和下客的区域. 人类的司机可以选择一个最佳的地方停车, 但是机器仍然需要协助. Uber已经开始在某些城市标识理想的上客和下客的位置, 并且建议他们乘坐人类驾车辆. 已经有一些大学校园和公寓大楼正在建设中(with ride-hailing in mind). (无人驾驶的Uber有一个"靠边停车的"按钮来对应这种情况). 
+> 我在这辆自动驾驶的Uber上花了大量的时间(和Ryan)讨论"脱靶"的情况, 算法设计和用户界面, 这些对于我来说和在一辆未来的robocar一样激动人心. 然而即使当驾驶算法可以完美的工作, 这里仍然有一些实际的问题需要被解决. 举例来说, 将来人们如何和无人驾驶车辆打招呼? 它们不可以随便停车, 否则它们会阻塞交通并且干扰人们(的正常活动).无人驾驶车辆如何能够告诉车上的乘客准备出发? 某种类型的"开始"按钮还是需要的 - 当乘客忽然想下车的时候, "停止"按钮也是需要的. 但是或许不久的将来, 街道会重新设计上客和下客的区域. 人类的司机可以选择一个最佳的地方停车, 但是机器仍然需要协助. Uber已经开始在某些城市标识理想的上客和下客的位置, 并且建议他们乘坐人类驾车辆. 已经有一些大学校园和公寓大楼正在建设中(with ride-hailing in mind). (无人驾驶的Uber有一个"靠边停车的"按钮来对应这种情况).
 
 **Waymo, the self-driving unit of Google’s parent company, hopes to launch a robotaxi service in Phoenix later this year.** Waymo has the lowest disengagement rate in the industry, and is generally considered the leader in the field; its autonomous vehicles can now operate in Phoenix without the need for safety drivers. GM’s Cruise, which is fast catching up with Waymo, hopes to launch a robotaxi service in 2019, using autonomous Chevy Bolts that do not have a steering wheel, pedals or any other kind of manual controls. So they, too, will have to be able to operate entirely autonomously without a safety driver. Dozens of other firms are also working on self-driving vehicles. Over the coming months and years more AVs will take to the roads in more cities, and the areas in which they operate will gradually expand. Probably sometime in the 2020s, you will take your first ride in a self-driving car. It will be exciting at first — but then, if all goes well, it should quickly become reassuringly boring.
 > 在今后的几年里, Waymo, Google母公司的自动驾驶部门, 打算在凤凰城提供无人驾驶的出租车服务. 在业界, Waymo的"脱靶"率是最低的, 并且被公认为这个领域内的领导者; 通用汽车的Cruise, 是最接近Waymo技术的, 他们希望在2019年提供无人驾驶的出租车服务, 使用自动驾驶的Chevy Bolt, 这种车没有方向盘, 踏板和其他各种手动控制的东西. 所以它们将不得不在没有安全司机的情况下完全自动驾驶. 一堆其他的公司都正在研发自动驾驶的车辆. 在今后的几个月里和几年内, 更多的无人驾驶车辆将会在更多的城市里上路, 并且它们的行驶范围会更加广阔. 有可能在2020年, 你可以在无人驾驶的车辆. 它首先将会是兴奋的, 然后, 如果它运行正常, 它会变得让人踏实的无聊.

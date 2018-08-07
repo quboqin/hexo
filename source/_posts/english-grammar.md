@@ -498,11 +498,12 @@ It does not represent a change in time, but rather a more uncertain tone. It nee
 |Time|从句|主语|
 |-|-|
 ||要把假设条件当真, 所以不能用表示不确定性的助动词|在一个假定条件下"就会/就可能"有啥结果, 所以用过去拼法的助动词|
-|<span style="color:yellow">现在时间</span>|<span style="color:yellow">现在式 → 过去式</span>|<span style="color:yellow">过去拼法的助动词 + V(动词原型)</span>|
+|<span style="color:blue">现在时间</span>|<span style="color:blue">现在式 → 过去式</span>|<span style="color:blue">过去拼法的助动词 + V(动词原型)</span>|
 ||If I were you|I wouldn't do it|
 ||If I were to take the bribe|I could never look at other people in the eye again|
-|<span style="color:yellow">过去时间</span>|<span style="color:yellow">过去式 → 过去完成式</span>|<span style="color:yellow">过去拼法的助动词 + have + Ven(完成)</span>|
+|<span style="color:blue">过去时间</span>|<span style="color:blue">过去式 → 过去完成式</span>|<span style="color:blue">过去拼法的助动词 + have + Ven(完成)</span>|
 ||If I had known earlier|I might have done something|
+||If the bear had been more than just curious|Things might have turned out a little differently|
 |未来时间|过去拼法的助动词 + V(动词原型)|过去拼法的助动词 + V(动词原型)|
 |未来时间接近条件语气, 表示不确定的语气|If an asteroid should hit the earth|man could die out|
 ||If I should take the money| could you guarantee secrecy|

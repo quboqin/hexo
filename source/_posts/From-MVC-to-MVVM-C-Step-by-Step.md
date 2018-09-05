@@ -107,3 +107,190 @@ categories:
   expandViewController?.removeFromParentViewController()
   expandViewController = nil
   ```
+
+  #### AutoLayout and constraint
+  Being familiar with UIKit is very important for developing your user interface. And you must be prepare to move beyond the basics, and dive into the UI framework. When you do start writing iOS apps, you’ll have a solid and rigorous
+  understanding of what you are doing and where you are heading.
+
+  There are three stages before views can be displayed on the screen. The first step is "updating constrains", which is form subviews to their superviews(bottom-up). It will prepare the information needed for the second step called "layout". In this step, frames(centers and bounds) of views will be set depending on the constrain system. Finally the "display" pass renders the views on the screen.
+
+  Before you take control of layout, you need to know how to trigger the override functions in these three steps, and when to trigger these functions. The table below lists all relative functions in these steps.
+
+  |Method purposes|Constraints|Layout|Display|
+  |-|-|-|-|
+  |Implement updates (override, don’t call explicitly)|updateConstraints|layoutSubviews|draw|
+  |Explicitly mark view as needing update on next update cycle|setNeedsUpdateConstraints invalidateIntrinsicContentSize|setNeedsLayout|setNeedsDisplay|
+  |Update immediately if view is marked as “dirty”|updateConstraintsIfNeeded||layoutIfNeeded|
+  |Actions that implicitly cause views to be updated| Activate/deactivate constraints<br>Change constraint’s value or priority<br>Remove view from view hierarchy|addSubview<br>Resizing a view setFrame that changes a view’s bounds (not just a translation)<br>User scrolls a UIScrollView<br>User rotates device|Changes in a view’s bounds|
+
+  ##### A good example of changing the local constraints
+
+``` Swift
+// Create a new property to hold the aspect ratio constraint of an imageView
+fileprivate var aspectRatioConstraint:NSLayoutConstraint?
+
+// Override the updateConstraints function to recreate the aspect ratio constraint depending on the image width and height
+override func updateConstraints() {
+  super.updateConstraints()
+
+  var aspectRatio: CGFloat = 1
+  if let image = image {
+    aspectRatio = image.size.width / image.size.height
+  }
+
+  // setting the isActive of a constraint to false will make this constraint be nil, so you need to create a new one
+  aspectRatioConstraint?.isActive = false
+  aspectRatioConstraint =
+      imageView.widthAnchor.constraint(
+        equalTo: imageView.heightAnchor,
+        multiplier: aspectRatio)
+  aspectRatioConstraint?.isActive = true
+}
+
+// Change the image property declaration in order to invalidate the constraints and trigger the autolayout process again:
+var image: UIImage? {
+  didSet {
+    imageView.image = image
+    setNeedsUpdateConstraints()
+  }
+}
+```
+
+In the _updateConstraints()_ function, you can't invalidate any constraints, otherwise you will get a crash because your program has already been in the layout cycle.
+<img src="/From-MVC-to-MVVM-C-Step-by-Step/Update_Cycle.png" width="80%" margin-left="auto" margin-right="auto"><br>
+You can change the properties which are relative with the constraints, then invalidate constraints and trigger the layout process in the event process stage of the main run loop, then the system will call the callback function _updateConstraints_ you override in the ** _update cycle_ ** . In this function, you can change/remove/add constraints which depending on the properties changing before. This guideline can also apply to the process of layout and display.
+
+There are some scenarios about how to fine-tune the frames of your views by overriding the _layoutSubviews_ function. The first one is not necessary, because you can add a constraint, but it is an example.
+
+``` Objective-C
+- layoutSubviews
+{
+    [super layoutSubviews];
+    if (self.subviews[0].frame.size.width <= MINIMUM_WIDTH) {
+        [self removeSubviewConstraints];
+        self.layoutRows += 1;
+        [super layoutSubviews];
+    }
+}
+
+- updateConstraints
+{
+    // add constraints depended on self.layoutRows...
+    [super updateConstraints];
+}
+```
+
+> There is a trick. Because the layout process is top-down, you can get the frame of the current view before you call the super function _layoutSubviews_. After the super function _layoutSubviews_ being called, the subviews of this view also get their frames, so you can get the sizes and positions of its' subviews. In this case, we compare the width of the first subview, and change the _layoutRows_ property, then call its' super _layoutSubviews_ to fire the autolayout process from the updating constraints step again.<br>
+You can also subclass your first subview(in this case), and override the _layoutSubviews_ function in its' subclass, and get its' frame like the next example which fine-tune the width of a multi-line label
+
+``` Objective-C
+@implementation MyLabel
+- (void)layoutSubviews
+{
+    self.preferredMaxLayoutWidth = self.frame.size.width;
+    [super layoutSubviews];
+}
+@end
+```
+
+> Or you can make this adjustment at the view controller level, put this logic into the _viewDidLayoutSubviews_ function. Because the autolayout process is finished,  so you must re-fire this process by calling _layoutIfNeeded_
+
+``` Objective-C
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    myLabel.preferredMaxLayoutWidth = myLabel.frame.size.width;
+    [self.view layoutIfNeeded];
+}
+```
+
+#### Core Animation’s models, classes and blocks
+  Animation in iOS is huge topic, but the animation process can be as simple as changing properties during a given time. It includes two main animation systems. One is based on "View Animation", and the other is called "Core Animation". I only list some key issues about Animation.
+
+##### View Animation
+  There are three stages for "View Animation" because of the historical evolution of iOS. I just give some snippet codes below for each of these stages.
+
+  * Begin and commit
+  ``` Swift
+  UIView.beginAnimations(nil, context: nil)
+  UIView.setAnimationDuration(1)
+  self.v.backgroundColor = .red
+  UIView.commitAnimations()
+  ```
+
+  * Block-based animation
+  ``` Swift
+  UIView.animate(withDuration:1) {
+    self.v.backgroundColor = .red
+  }
+  ```
+
+  * Property animator
+  ``` Swift
+  let anim = UIViewPropertyAnimator(duration: 1, curve: .linear) {
+      self.v.backgroundColor = .red
+  }
+  anim.startAnimation()
+  ```
+
+##### Implicit Layer Animation
+  Before we jump to "Core Animation", we also can change properties on CALayer. It is called "Implicit Layer Animation". Just set layer properties, and your layers animate in the default way. You can not control the animation except you use a "CATransaction" with "Implicit Layer Animation". And remember, there is always an implicit transaction surrounding your code, and you can operate on this implicit transaction without any begin and commit.
+
+  ``` Swift
+  // can be omitted
+  CATransaction.begin()
+
+  CATransaction.setAnimationDuration(0.8)
+  self.globalLabel.layer.transform = CATransform3DMakeRotation(0, 1, 0, 0)
+
+  // can be omitted
+  CATransaction.commit()
+  ```
+
+##### Core Animation
+  "Core Animation" is also called "Explicit Layer Animation". To specify a property using a keyPath, we can create an CABasicAnimation object or its inheritance, then we add this object onto the layer of a view. There are two problems when we use "Core Animation". One is setting a property on a layer will fire the "Implicit Layer Animation", We can prevent this side effect by disabling actions:
+
+  ``` swift
+  CATransaction.begin()
+  CATransaction.setDisableActions(true)
+
+  let transformAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.transform))
+  transformAnimation.fromValue = CATransform3DMakeRotation(0, 1, 0, 0)
+  transformAnimation.toValue = CATransform3DMakeRotation(CGFloat(Double.pi), 1, 0, 0)
+  transformAnimation.duration = 2
+  transformAnimation.autoreverses = true
+  transformAnimation.repeatCount = .infinity
+
+  CATransaction.setCompletionBlock({
+    self.globalLabel.layer.transform = CATransform3DMakeRotation(0, 1, 0, 0)
+  })
+
+  self.globalLabel.layer.add(transformAnimation, forKey: #keyPath(CALayer.transform))
+
+  CATransaction.commit()
+  ```
+
+  The other problem is if we use "Core Animation", the property will not change to the value when the animation is end, because "Core Animation" create a new layer to present the animation, called "presentation layer". So we need it set the new value into the property of its "model layer" in the completion block.
+
+  If you use "Implicit Layer Animation" or "View Animation", you don't need to care about these problems, because the Animation framework will handle these for you. But when you use the "Core Animation" which is the fundamental underlying iOS animation technology, you get more powerful, so you need more responsibility.
+
+##### Transitions
+  Another concept called "Transitions" is very confused, if you are not a native English speaker. Usually we use "Transitions" in two situations. We can change the content of a view such as the image of a UIImageView using "transition(with:duration:options:animations:completion:)" function:
+  ``` swift
+  let opts : UIViewAnimationOptions = .transitionFlipFromLeft
+  UIView.transition(with:self.iv, duration: 0.8, options: opts, animations: {
+      self.iv.image = UIImage(named:"Smiley")
+  })
+  ```
+  Or we can replace the first view with the second view by using "transition(from:to:duration:options:completion:)" function.
+  ``` Swift
+  let lab2 = UILabel(frame:self.lab.frame)
+    lab2.text = self.lab.text == "Hello" ? "Howdy" : "Hello"
+    lab2.sizeToFit()
+    UIView.transition(from:self.lab, to: lab2,
+        duration: 0.8, options: .transitionFlipFromLeft) { _ in
+            self.lab = lab2
+}
+  ```
+
+#### Custom UIViewController Transitions

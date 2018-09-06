@@ -62,6 +62,8 @@ categories:
   >The functional programming paradigm was explicitly created to support a pure functional approach to problem solving. Functional programming is a form of declarative programming. In contrast, most mainstream languages, including object-oriented programming (OOP) languages such as C#, C++, and Java, were designed to primarily support imperative (procedural) programming.
 
 ## Design Our UI
+Understanding how and when a view updates requires a deeper understanding of the  UIKit framework. This article focuses on the architecture patterns, so we will not talk more about the UI staffs. But the topics I discuss below are very important to you to build an application as quickly as possible.
+
 #### Storyboard or Programmatic is a problem
   Here is the whole picture of our pages in the storyboard.
 
@@ -153,6 +155,25 @@ var image: UIImage? {
     imageView.image = image
     setNeedsUpdateConstraints()
   }
+}
+```
+
+  ##### Change constraints with animations
+If you want to replace the default behaviors of constraints animation, you must call the _layoutIfNeeded_ function in the animation block, otherwise the change of the constraint will be executed in the update cycle of the run loop, so the animation block you defined will be useless.
+
+``` Swift
+func collapseHeader() {
+    UIView.animate(withDuration: 1.2, animations: {
+        self.headerHeightConstraint.constant = self.minHeaderHeight
+        self.view.layoutIfNeeded()
+    })
+}
+
+func expandHeader() {
+    UIView.animate(withDuration: 0.2, animations: {
+        self.headerHeightConstraint.constant = self.maxHeaderHeight
+        self.view.layoutIfNeeded()
+    })
 }
 ```
 
@@ -294,3 +315,67 @@ You can also subclass your first subview(in this case), and override the _layout
   ```
 
 #### Custom UIViewController Transitions
+The transitioning API includes several components which confirm a collection of protocols. The diagram below shows these relative components:
+
+<img src="/From-MVC-to-MVVM-C-Step-by-Step/Transitioning_API.jpg" width="80%" margin-left="auto" margin-right="auto"><br>
+
+Here is the 7 steps involved in a presentation transition:
+
+1. Before You trigger the transition either programmatically or via a segue, you need to set the transitioningDelegate property in your "to" view controller. In this case, the transitioningDelegate is the "from" view controller. The "from" view controller in here is also the ** presenting ** view controller. When you trigger the transition via a segue, the override function _prepare(for:_)_ in the presenting view controller will be called, in this function, you can get the "to" view controller(also called "** presented **") form the segue destination. Then you can set the transitioningDelegate property of the destination to itself.
+``` swift
+override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    super.prepare(for: segue, sender: sender)
+    segue.destination.transitioningDelegate = self
+
+    if let navigationController = segue.destination as? SettingsNavigationController,
+    let settingsViewController = navigationController.viewControllers.first as? SettingsViewController {
+      settingsViewController.delegate = self
+    }
+}
+```
+2. UIKit asks the “presented” view controller (the view controller to be shown) for its transitioning delegate. If it doesn’t have one, UIKIt uses the standard, built-in transition. In here the delegate is the presenting view controller. The transition delegate conforms two methods of ** UIViewControllerTransitioningDelegate protocol **. One is for presenting, the other is for dismissing.
+3. UIKit then asks the transitioning delegate for an animation controller via animationController(forPresented:presenting:source:). If this returns nil, the transition will use the default animation. The transition delegate create and return an animation controller who confirms the ** UIViewControllerAnimatedTransitioning protocol **
+4. UIKit constructs the transitioning context. Be careful, if you want to see the presenting view controller behind the presented view controller, you need to set the presentation style to .overFullScreen or .overCurrentContext. If you set this property to .fullScreen, the view of the presenting view controller will be replaced
+5. UIKit asks the animation controller for the duration of its animation by calling transitionDuration(using:).
+6. UIKit invokes animateTransition(using:) on the the animation controller to perform the animation for the transition.
+7. Finally, the animation controller calls completeTransition(_:) on the transitioning context to indicate that the animation is complete.
+
+And the steps for a dismissing transition are nearly identical.
+When you tigger the reserves process, UIKit asks the transitioning delegate for an animation controller animationController(forDismissed dismissed:), then repeat the steps from 4 to 7.
+
+Here is the animation controller code who play the animation role:
+
+``` Swift
+class PresentTransitionController: NSObject, UIViewControllerAnimatedTransitioning {
+
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+        return 0.6
+    }
+
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+
+        let fromViewController = transitionContext.viewController(forKey: .from)!
+        let toViewController = transitionContext.viewController(forKey: .to)!
+        let containerView = transitionContext.containerView
+
+        let screenBounds = UIScreen.main.bounds
+        let topOffset: CGFloat = 160.0
+
+        var finalFrame = transitionContext.finalFrame(for: toViewController)
+        finalFrame.origin.y += topOffset
+        finalFrame.size.height -= topOffset
+
+        toViewController.view.frame = CGRect(x: 0.0, y: screenBounds.size.height,
+                                             width: finalFrame.size.width,
+                                             height: finalFrame.size.height)
+        containerView.addSubview(toViewController.view)
+
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1.0, options: .curveEaseOut, animations: {
+            toViewController.view.frame = finalFrame
+            fromViewController.view.alpha = 0.3
+        }) { (finished) in
+            transitionContext.completeTransition(finished)
+        }
+    }
+}
+```

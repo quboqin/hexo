@@ -225,6 +225,8 @@ You can also subclass your first subview(in this case), and override the _layout
 }
 ```
 
+##### StackView with Fill Distribution
+
 #### Core Animation’s models, classes and blocks
   Animation in iOS is huge topic, but the animation process can be as simple as changing properties during a given time. It includes two main animation systems. One is based on "View Animation", and the other is called "Core Animation". I only list some key issues about Animation.
 
@@ -379,3 +381,133 @@ class PresentTransitionController: NSObject, UIViewControllerAnimatedTransitioni
     }
 }
 ```
+
+#### Add Gesture On the Section header
+
+## Connect with internet
+We already have got the "Views" in MVC pattern, it is time to build the "Models" and create networking service to connect with our backend. There are lots of approaches to build the "Models" and networking service.
+1. The most formal way is introducing some mocks and stubs before creating real data models and connecting the endpoints. The frontend developing will not depend on the progress of the backend developing. As I mentioned before you can use the data mock platform to mock the data we need, some of these platform are open source. You can setup your own data mock platform on your laptop, and you also can use their online service to create data, then download and save to a JSON file as a resource embedded into your application bundle. The other benefit is you can use these mock data to test your business logics and application logics. You will not stuck in debugging with backend engineers and complain each other, and the testers who get theirs test sets can help you test your application and business logics.
+
+2. If the backend service is ready and stable. You can skip the step to build the mock data and stubs. Importing a third party module is also a good choice. [Alamofire](https://github.com/Alamofire/Alamofire) is one of the famous open sources. Using a heavy library sometimes you must be careful, if you don't want to relay on this one.
+
+3. There are an assumption that building a networking framework is a big challenge. Implementing the basic feature I think is not difficult, you can reference this topic ["Writing a Network Layer in Swift: Protocol-Oriented Approach
+"](https://medium.com/flawless-app-stories/writing-network-layer-in-swift-protocol-oriented-approach-4fa40ef1f908) from Malcolm Kumwenda. This guy write a good article to teach you how to build your own networking layer step by step.
+
+First I wrote a http request using the native API **_URLSession_**, extend each model with a JSON initializer, handle the nested objects. When I get the data from a http request, I map the JSON format into a corresponding object.
+
+``` Swift
+extension Ticket {
+    init?(from json: [String: Any]) {
+        guard
+            let id = json["id"] as? UInt,
+            let name = json["name"] as? String,
+            let symbol = json["symbol"] as? String,
+            let website_slug = json["website_slug"] as? String,
+            let rank = json["rank"] as? UInt,
+            let circulating_supply = json["circulating_supply"] as? Double,
+            let total_supply = json["total_supply"] as? Double,
+            let max_supply = json["max_supply"] as? Double,
+            let quotesDict = json["quotes"] as? [String: Any],
+            let last_updated = json["last_updated"] as? UInt64
+        else {
+            return nil
+        }
+
+        self.init(id: id,
+                  name: name,
+                  symbol: symbol,
+                  website_slug: website_slug,
+                  rank: rank,
+                  circulating_supply: circulating_supply,
+                  total_supply: total_supply,
+                  max_supply: max_supply,
+                  quotes: Dictionary(uniqueKeysWithValues:
+                    quotesDict.map { key, value in
+                        let (key, value) = (key, QUOTE(from: (value as? [String: Any])!))
+                        return (key, value!)
+                    }
+                  ),
+                  last_updated: last_updated)
+    }
+}
+```
+
+``` Swift
+let url = URL(string: "https://api.coinmarketcap.com/v2/ticker/")!
+
+session.dataTask(with: url) { (data, response, error) in
+    DispatchQueue.main.async {
+        if let error = error {
+            completionHandler(.error(error))
+            return
+        }
+
+        guard
+            let data = data,
+            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []),
+            let jsonDict = jsonObject as? [String: Any],
+            let dataDict = jsonDict["data"] as? [String: Any]
+        else {
+            completionHandler(.error(ServiceError.cannotParse))
+            return
+        }
+
+        let items = dataDict.values.map{ $0 } as? [[String: Any]]
+        let tickets = items!.compactMap(Ticket.init)
+        completionHandler(.success(tickets))
+    }
+}.resume()
+```
+
+It is not a bad idea, if you write a simple example, but it will turn to a disaster quickly when you write a real application. But I don't want to use the Alamofire right now. So I followed Malcolm Kumwenda to create my own networking library, base on his codebase, I make a little change to support multi data sources.
+
+The diagram is showed below, there three main roles in this diagram
+<img src="/From-MVC-to-MVVM-C-Step-by-Step/Networking.png" width="80%" margin-left="auto" margin-right="auto"><br>
+
+1. Difficult endpoints in every data source are defined in difficult enums(**_Huobi API, CoinMarketAPI and CryptoCompareAPI_**), these enums also confirm EndPointType protocol, you can get http parameters, paths and methods from these variables in this protocol, the return values depend on the values of the enums.
+
+2. Our application involve three websites: Huobi, CoinMarket and CryptoCompare. So we create three NetworkManagers for each site. These NetworkManagers all inherit form NetworkManager who provide NetworkEnvironment to distinguish difficult running environment:
+``` Swift
+enum NetworkEnvironment {
+    case qa
+    case product
+    case staging
+}
+```
+Difficult sites use different NetworkManagers. These NetworkManagers only handle the errors which return from http requests or JSON parsing. And different NetworkManagers include different routers.
+
+3. Router is a generic class inherited from NetworkRouter. Giving different EndPointType, we can create different routers. The responsibility of this Router is prepare the parameters according the endpoints, and launch the real url sessions.
+
+In Swift 4 they provide Decodable protocol, I use this to convert my JSON objects to an equivalent Struct or Class. Sometimes you don't need to write a single line, but if the names of the properties in our Classes are different from the keys returning from backend, we need to build the mapping.
+
+``` swift
+//MARK: Listings
+struct Item {
+    let id: UInt
+    let name: String
+    let symbol: String
+    let websiteSlug: String
+}
+
+extension Item: Decodable {
+    private enum ItemCodingKeys: String, CodingKey {
+        case id
+        case name
+        case symbol
+        case websiteSlug = "website_slug"
+    }
+
+    init(from decoder: Decoder) throws {
+        let itemContainer = try decoder.container(keyedBy: ItemCodingKeys.self)
+
+        id = try itemContainer.decode(UInt.self, forKey: .id)
+        name = try itemContainer.decode(String.self, forKey: .name)
+        symbol = try itemContainer.decode(String.self, forKey: .symbol)
+        websiteSlug = try itemContainer.decode(String.self, forKey: .websiteSlug)
+    }
+}
+```
+
+## The Bridge - Controllers
+
+Now we have the two important elements "Views" and "Models" in MVC pattern. We will finish our business logics and application logics in our "Controllers" to connect our "Views" with our "Models"

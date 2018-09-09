@@ -317,7 +317,7 @@ You can also subclass your first subview(in this case), and override the _layout
   ```
 
 #### Custom UIViewController Transitions
-The transitioning API includes several components which confirm a collection of protocols. The diagram below shows these relative components:
+The transitioning API includes several components which conform a collection of protocols. The diagram below shows these relative components:
 
 <img src="/From-MVC-to-MVVM-C-Step-by-Step/Transitioning_API.jpg" width="80%" margin-left="auto" margin-right="auto"><br>
 
@@ -464,9 +464,13 @@ It is not a bad idea, if you write a simple example, but it will turn to a disas
 The diagram is showed below, there three main roles in this diagram
 <img src="/From-MVC-to-MVVM-C-Step-by-Step/Networking.png" width="80%" margin-left="auto" margin-right="auto"><br>
 
-1. Difficult endpoints in every data source are defined in difficult enums(**_Huobi API, CoinMarketAPI and CryptoCompareAPI_**), these enums also confirm EndPointType protocol, you can get http parameters, paths and methods from these variables in this protocol, the return values depend on the values of the enums.
+1. Different endpoints in every data source are defined in different enums(**_Huobi API, CoinMarketAPI and CryptoCompareAPI_**), these enums all conform EndPointType protocol, you can get http parameters, paths and methods from these variables in this protocol, the return values depend on the values of the enums.
 
-2. Our application involve three websites: Huobi, CoinMarket and CryptoCompare. So we create three NetworkManagers for each site. These NetworkManagers all inherit form NetworkManager who provide NetworkEnvironment to distinguish difficult running environment:
+2. Router is a generic class. Giving different EndPoints, we can create different routers. The responsibility of this Router is prepare the parameters depending on the given endpoints, then trigger the real url sessions.
+
+3. Our application involve three websites: Huobi, CoinMarket and CryptoCompare. So we create three NetworkManagers for each site. These NetworkManagers are all singleton, creating a router using an endpoint to replace the placeholder is their only jobs, then inject this router into themselves. These NetworkManagers all inherit form NetworkManager who handle the errors during the networking requests, and parse the JSON result form backend. It aslo managers all tasks created by the router. You can cancel these tasks by unique id.
+
+4. NetworkEnvironment is a singleton class which distinguishs different running environment:
 ``` Swift
 enum NetworkEnvironment {
     case qa
@@ -474,10 +478,6 @@ enum NetworkEnvironment {
     case staging
 }
 ```
-Difficult sites use different NetworkManagers. These NetworkManagers only handle the errors which return from http requests or JSON parsing. And different NetworkManagers include different routers.
-
-3. Router is a generic class inherited from NetworkRouter. Giving different EndPointType, we can create different routers. The responsibility of this Router is prepare the parameters according the endpoints, and launch the real url sessions.
-
 In Swift 4 they provide Decodable protocol, I use this to convert my JSON objects to an equivalent Struct or Class. Sometimes you don't need to write a single line, but if the names of the properties in our Classes are different from the keys returning from backend, we need to build the mapping.
 
 ``` swift

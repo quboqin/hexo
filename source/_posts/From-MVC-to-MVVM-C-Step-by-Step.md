@@ -1,5 +1,5 @@
 ---
-title: 'From MVC to MVVM-C, Step by Step'
+title: 'From MVC to MVVM-C, Step by Step, Part I'
 date: 2018-08-23 12:30:22
 tags: [iOS, MVC, MVVM, RxSwift, Coordinator, Design Pattern, Architecture Pattern, ViewModel]
 categories:
@@ -510,4 +510,110 @@ extension Item: Decodable {
 
 ## The Bridge - Controllers
 
-Now we have the two important elements "Views" and "Models" in MVC pattern. We will finish our business logics and application logics in our "Controllers" to connect our "Views" with our "Models"
+Now we have the two important elements "Views" and "Models" in MVC pattern. We will finish our business logics and application logics in our "Controllers" to connect our "Views" with our "Models".
+
+The main feature of this demo application is fetch data from three websites who provide real time exchange infos of cryptocurrencies, and show these data in a tableview. Thee is no business logic at the front end, and this application only contains some simple application logics:
+1. Filter the result got from the network by typing some keywords at the top of the tableview.
+2. Choice whether or not to list tokens by clicking a switch of selecting cryptocurrency type.
+3. Sort the list in a descending or ascending order by name or price or change rate.
+4. You can swipe the tableview item in the price view controller to add this cryptocurrency into your favorite list. You can also remove it from your favorite list. This favorite list will be saved, and will be reload when this application is being launched.
+5. When you click the item, the tableview cell will be expanded, and show the kline of the selected cryptocurrency in a chart.
+6. As a demo application, I add a feature that you can select different data sources of this kline in the setting view controller.
+7. It will pop a webview to present the detail information of the selected cryptocurrency, when you tap the "eye" on the right top of the expanded chart view.
+
+Writing these application logics is not a big challenge. After I added a few lines of code, I can filter this list by some keywords and type. But when I was adding the sorting logic, I was aware that I had already messed around the view controllers.
+
+``` Swift
+let ticker = showCoinOnly ? (whichHeader == .coin ? sortTickers(_tickers.filter({ !$0.isToken }))[indexPath.row] : _tickers.filter({ !$0.isToken })[indexPath.row])
+    : (indexPath.section == 0 ? (whichHeader == .coin ? sortTickers(_tickers.filter({ !$0.isToken }))[indexPath.row] : _tickers.filter({ !$0.isToken })[indexPath.row])
+        : (whichHeader == .token ? sortTickers(_tickers.filter({ $0.isToken }))[indexPath.row] : _tickers.filter({ $0.isToken })[indexPath.row]))
+```
+
+
+But when I wanted to display the result on the tableview, Only three conditions I needed to apply on the result, this expression made me crazy, and I put this snippet in every place in the tableview controller. I realized that this code must be used and can be readable. All of the functions in the above code is filtering and sorting when some conditions is changed.
+
+<img src="/From-MVC-to-MVVM-C-Step-by-Step/Data_Filter.png" width="80%" margin-left="auto" margin-right="auto"><br>
+
+This diagram is more like some figures in reactive programming article, this is the main motivation why we need to change from functional programming paradigm to imperative mode. Let me finish the MVC part, because we still meet other problems. So I create an extension of Array where its element must be "Ticker". Then I moved this logic into the "milter" function in this extension.
+
+``` Swift
+extension Array where Element == Ticker {
+    func filter(BySearch searchText: String?) -> [Ticker] {
+        var filterTickers = [Ticker]()
+        if let lowcasedSearchText = searchText?.lowercased() {
+            filterTickers = self.filter { $0.fullName.lowercased().range(of: lowcasedSearchText) != nil }
+        }
+        if filterTickers.count == 0 {
+            filterTickers = self
+        }
+        return filterTickers
+    }
+
+    func milter(filterBy searchText: String?, separatedBy section: Section, sortedBy condition: Sorting) -> [Ticker] {
+        var filterTickers = [Ticker]()
+        filterTickers = filter(BySearch: searchText)
+
+        filterTickers = filterTickers.filter {
+            switch section {
+            case .coin:
+                return !$0.isToken
+            case .token:
+                return $0.isToken
+            default:
+                return true
+            }
+        }
+
+        if condition == .none {
+            return filterTickers
+        }
+        filterTickers = filterTickers.sorted {
+            switch condition {
+            case .name:
+                return $0.fullName < $1.fullName
+            case .nameDesc:
+                return $0.fullName > $1.fullName
+            case .change:
+                return $0.quotes["USD"]!.percentChange24h < $1.quotes["USD"]!.percentChange24h
+            case .changeDesc:
+                return $0.quotes["USD"]!.percentChange24h > $1.quotes["USD"]!.percentChange24h
+            case .price:
+                return $0.quotes["USD"]!.price < $1.quotes["USD"]!.price
+            case .priceDesc:
+                return $0.quotes["USD"]!.price > $1.quotes["USD"]!.price
+            default:
+                return $0.fullName < $1.fullName
+            }
+        }
+
+        return filterTickers
+    }
+}
+```
+
+In the tableview delegator or datasource, I replaced the old ones with
+``` swift
+let _tickers = tickers.milter(filterBy: self.lowercasedSearchText,
+                              separatedBy: Section(section: indexPath.section),
+                              sortedBy: _sorted)
+```
+
+I cleaned my room, but the story wasn't end. The sorting logic start from the user clicking on the section header. There are three section headers, one is for coin type, one is for tokens and the other is for my favorite list. And each of these section has three types of sorting. To keep this sorting statuses, I also introduced lots of "Variables" to present the status of sorting logic. These code snippet are scattering into several classes. If I didn't check the code for some days and reviewed it again, I would almost forgot their relationship with the sorting logic.
+
+The kline chart is embedded in the ExpandViewController, and the ExpandViewController is appeared in two view controllers, one is the price view controller, the other is the Favorite viewcontroller, so the ExpandViewController has two instances. And these instances have different life cycle. We change the kline datasource from the Setting view controller, this change can't be conveyed to every one. There is no good method to cache this change, except using a global singleton object to store this status. That is why I created a class called "KLineSource". Too many global object means disaster will come. But the MVC model, I have no choice, if I don't want to keep this status in a lot of objects, and transfers this status from one object to the other one. It will be more uglily than the method before.
+
+``` swift
+class KLineSource {
+    static let shared = KLineSource()
+
+    var dataSource = DataSource.cryptoCompare
+
+    private init() {
+
+    }
+}
+```
+
+This is a simple demo application. So I only met these two main barriers. One is how to maintain relative statuses, and connect them effectively, some statuses are changed, some one will follow. Another is how to keep some statuses that we can access them convenience. I work around these issues, the codebase looks uglily now. And I have no idea how to test these code. So far I have finished the application under MVC pattern. You can check the code out here.
+
+I think the MVVM pattern only brings us branch of new classes, if we don't introduce the reactive framework. If we separate some logics from the massive view controllers, it will help us to test our application logic, but I am not sure about it is useful. Our real problem is how to synchronize these statuses distributed in different objects. The RxSwift give us a better solution to connect the statuses together. So I will jump to the MVVM w/ RxSwift in the next section. 

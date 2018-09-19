@@ -617,3 +617,32 @@ class KLineSource {
 This is a simple demo application. So I only met these two main barriers. One is how to maintain relative statuses, and connect them effectively, some statuses are changed, some one will follow. Another is how to keep some statuses that we can access them convenience. I work around these issues, the codebase looks uglily now. And I have no idea how to test these code. So far I have finished the application under MVC pattern. You can check the code out here.
 
 I think the MVVM pattern only brings us branch of new classes, if we don't introduce the reactive framework. If we separate some logics from the massive view controllers, it will help us to test our application logic, but I am not sure about it is useful. Our real problem is how to synchronize these statuses distributed in different objects. The RxSwift give us a better solution to connect the statuses together. So I will jump to the MVVM w/ RxSwift in the next section. 
+
+
+## MVC-RxSwift
+
+### The Problems I met
+#### How to exchange and save the statuses between the view controllers, My target is eliminating all delegates, but the statuses are still exist. 
+1. local status
+2. share between two view controllers, one will be released, the other is alway keeping in the memory
+3. share the statuses between more than two view controllers, or these two view controllers will all be released 
+
+#### How to initialize the RxSwift reactive chain when some of these view controllers are created dynamically
+
+#### How to distinguish the variables of views and the variables of view models
+
+#### How to deal with filesystem API, they are just like the networking API, but they are synchronizaton, so...
+
+#### How to handle the error events emmited from networking API
+1. errro events will terminate the obserable sequence, 
+
+
+#### How to use the withLatestFrom operator
+
+#### about two way binding
+
+#### About RxDataSource
+
+#### How to encapsulate networking API using RxSwift
+
+

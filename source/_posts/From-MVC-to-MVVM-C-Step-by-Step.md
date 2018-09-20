@@ -620,29 +620,230 @@ I think the MVVM pattern only brings us branch of new classes, if we don't intro
 
 
 ## MVC-RxSwift
+<img src="/From-MVC-to-MVVM-C-Step-by-Step/Methods_For_Information_Flow.png" width="80%" margin-left="auto" margin-right="auto"><br>
+When I separate our application into different objects with MVC pattern, we need some methods to exchange informations betwen these objects. In Apple's framework, there are seveval ways we can choice, from delegates, callback blocks, notifications, KVO, to target/action event observers. It is convenient for us to glue these objects together. But it is also confused to us. Sometimes how to choice what kind of technology is a challenge. The big problem is we aslo need to connnect these different asynchronization methods in an appropriate way. In this process, we might create more additional varables to keep the status of the applcation. 
 
-### The Problems I met
-#### How to exchange and save the statuses between the view controllers, My target is eliminating all delegates, but the statuses are still exist. 
+It's time to introduce the RxSwift. In RxSwift, an Obseravble can emit a sequences of event. And this event contains some kind of value. RxSwift also provide lots of operators to convert and combine these events whatever you want. The different kinds of Subjects are powerful tools we can use to bond these sequences to create reactive chains. When we subscribe these sequences, we will get the responses automatically. 
+
+Though RxSwift is a powerful tool, but it seems like a totally different language. We need to change our minds to master the new language. And the learning curve of Swift is higher than learning Swift as an Objective-C programmer. Swift and Objective-C are different dialects in a same language. But when we use RxSwift, we just like talking with Alias. There is no shortcut to master the new language. Just use try and use it.
+
+#### How to encapsulate networking API using RxSwift
+The first thing to me is encapsulating callback methods in networking API with RxSwift Observable. I added a new function called _getDataFromEndPointRx_ to convert the callback into an Observable. And the Observable is a disposable object, I put the cancel logic in a callback function when the disposable object is created. So when the Obseravble object is released, It will cancel the http request automatically. 
+
+```Swift
+    func getDataFromEndPointRx<T: Decodable>(_ endPoint: EndPoint,
+                             type: T.Type) -> Observable<T> {
+        return Observable<T>.create({ observer in
+            let taskKey = self.getDataFromEndPoint(endPoint, type: type) {
+                (data, error) in
+                if error != nil {
+                    observer.onError(error!)
+                    return
+                }
+                
+                if let _data = data as? T {
+                    observer.onNext(_data)
+                }
+            }
+            
+            return Disposables.create {
+                self.cancelRequestWithUniqueKey(taskKey)
+                self.tasks.removeValue(forKey: taskKey)
+            }
+        })
+    }
+
+    func getDataFromEndPoint<T: Decodable>(_ endPoint: EndPoint,
+                                                 type: T.Type,
+                             networkManagerCompletion: @escaping NetworkManagerCompletion) -> taskId {
+        let task = router.request(endPoint) { (data, response, error) in
+            DispatchQueue.main.async {
+                if error != nil {
+                    networkManagerCompletion(nil, NetworkResponse.failed)
+                }
+                if let response = response as? HTTPURLResponse {
+                    let result = self.handleNetworkResponse(response)
+                    switch result {
+                    case .success:
+                        guard let responseData = data else {
+                            networkManagerCompletion(nil, NetworkResponse.noData)
+                            return
+                        }
+                        do {
+                            let apiResponse = try JSONDecoder().decode(type.self, from: responseData)
+                            networkManagerCompletion(apiResponse, nil)
+                        } catch {
+                            networkManagerCompletion(nil, NetworkResponse.unableTODecode)
+                        }
+                    default:
+                        networkManagerCompletion(nil, result)
+                    }
+                }
+            }
+        }
+        let taskId = NSUUID().uuidString
+        tasks = [taskId: task]
+        return taskId
+    }    
+```
+In our application, we use Filesystem APIs to save our favorite cryptocurrencies. The Filesystem APIs are more like our networking APIs. We can use the same methodology to convert the Filesystem APIs into RxSwift Observables. But in this application, I didn't do that, the main reason is our saved data is very small, and we can treat these APIs as synchronized function calls. So I think is not necessary for us to encapsulate them. I just subscrible the actions, and call these functions when the actions take place.
+
+``` Swift
+_selectRemoveMyFavorites.subscribe(onNext: {
+    self.removeSavedJSONFileFromDisk()
+}).disposed(by: disposeBag)
+```
+
+#### How to handle the error events emmited from networking API, Materialize and Dematerialize 
+Our networking APIs have not the ability to handle the errors, they just conduct these errors from the bottom to the applcation layer. How to handle these errors is depended on uour application logic. Without RxSwift, every thing is ok. But when we convert the callback function into Observable onject, the chain will be broken, because I send the errors through the onError event. After the onError event is sent, the Observable object will be terminated, this is not we want, but we still want to get these error messages in the application layer. How can we get them? In RxSwift, they provide a mechanism called _Materialize_. It add a shell on the onError event, then this event turns into a normal event, and the error event become a value inside the normal event. Then we can use a filter operator to catch the error event when it happans. If it is not a error event, then the filter will _dematerialize_ the event, we will get the original data again.
+
+``` Swift
+huobiReload.withLatestFrom(symbol.asObservable())
+    { (dataSource, symbol) in
+        return symbol
+    }
+    .flatMap { (symbol) ->  Observable<Event<KlineResponse>> in
+        return HuobiNetworkManager.shared.getDataFromEndPointRx(.historyKline(symbol: symbol.lowercased() + "usdt", period: "5min", size: 150), type: KlineResponse.self).materialize()
+    }
+    .filter { [unowned self ] in
+        guard $0.error == nil else {
+            Log.e("Catch Error: +\($0.error!)")
+            self.histoHourVolumes = Variable<[OHLCV]>([])
+            return false
+        }
+        return true
+    }
+    .dematerialize()
+    .map { (kLineResponse) -> [KlineItem] in
+        return kLineResponse.data
+    }
+    .map { (kLineItems) -> [OHLCV] in
+        var ohlcvs = [OHLCV]()
+        kLineItems.forEach({ (kLineItem) in
+            let ohlcv = OHLCV(time: 0, open: kLineItem.open!, close: kLineItem.close!, low: kLineItem.low!, high: kLineItem.high!, volumefrom: 0.0, volumeto: 0.0)
+            ohlcvs.append(ohlcv)
+        })
+        return ohlcvs
+    }
+    .bind(to: histoHourVolumes)
+    .disposed(by: disposeBag)
+```
+
+The Houbi API need me to provide correct symbol name, but I get the symbol name of cryptocurrency from CoinMarket. Sometimes the names of these symbols are not One-to-one correspondence. In this demo application, I don't want to handle this situation, So i will get an error return from the Huobi API, when I switch from CryptoCompare to the Huobi API. 
+
+#### Use RxSwift Extensions: RxDataSource
+Now we get the data, we can bind these data to views. RxCocoa has already encapsulated lots of controls in UIKit, but it is not enough when we encount some complex controls like TableView or CollectionView. At this situation, we need to use the extension framework from RxSwift community. RxDataSource makes us work more easy. First we create a datasource which is comfirmed SectionModelType protocol. This datasource also define a callback how to config tableview cell when we get the datasource item.
+
+``` Swift 
+dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, Ticker>>(
+    configureCell: { dataSource, tableView, indexPath, item in
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as! CurrencyCell
+        cell.selectionStyle = .none
+        cell.setCoinImage(item.imageUrl, with: (self.baseImageUrl)!)
+        cell.setName(item.fullName)
+        cell.setPrice((item.quotes["USD"]?.price)!)
+        cell.setChange((item.quotes["USD"]?.percentChange24h)!)
+        cell.setVolume24h((item.quotes["USD"]?.volume24h)!)
+        
+        self.currentUrlString = (self.baseImageUrl)! + item.url
+        
+        cell.setWithExpand(self.expandedIndexPaths.contains(indexPath))
+```
+
+After we get the data from Observable of the networking API, we map the event from the [Ticker] to [SectionModel<String, Ticker>], and bind this sections into the tableview. The RxDataSource solved our multi sections problem. 
+
+``` Swift
+Observable.combineLatest(_coins, __tokens) {
+    return ($0, $1)
+}
+.map {
+    var sections = [SectionModel<String, Ticker>]()
+    if $0.count != 0 {
+        sections.append(SectionModel(model: "Coin", items: $0))
+    }
+    if $1.count != 0 {
+        sections.append(SectionModel(model: "Token", items: $1))
+    }
+
+    return sections
+}
+.bind(to: tableView.rx.items(dataSource: dataSource!))
+.disposed(by: disposeBag)
+``` 
+
+But I can not find how to customize the section header view in different sections. The RxSwift keeps the delegate solution for some situation it can't handle. We can set a delegate to a tableview.rx, then the tableview still will call our delegate function in the view controller. 
+
+``` Swift
+dataSource?.canEditRowAtIndexPath = { dataSource, indexPath in
+    return !self.expandedIndexPaths.contains(indexPath as IndexPath)
+}
+
+tableView.rx
+    .setDelegate(self)
+    .disposed(by: disposeBag)
+```
+
+``` Swift
+extension PricesViewController {    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let favoriteRowAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Favorite", handler:{ [weak self] action, indexpath in
+            
+            guard let ticker = self?.dataSource?[indexPath] else {
+                return
+            }
+            
+            self?.favoritesViewController.baseImageUrl = self?.baseImageUrl
+            self?.favoritesViewController.addTicker(ticker)
+        })
+        
+        return [favoriteRowAction]
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 && self.coinSectionHeaderView == nil || section == 1 && self.tokenSectionHeaderView == nil {
+            if let headerView = super.tableView(tableView, viewForHeaderInSection: section) as? SectionHeaderView {
+                if section == 0 {
+                    headerView.section = SortSection.coin
+                    self.coinSectionHeaderView = headerView
+                } else {
+                    headerView.section = SortSection.token
+                    self.tokenSectionHeaderView = headerView
+                }
+                return headerView
+            }
+            return self.coinSectionHeaderView
+        } else if section == 0 {
+            return self.coinSectionHeaderView
+        } else {
+            return self.tokenSectionHeaderView
+        }
+    }
+}    
+```
+
+#### Connect all Observables and Observers together
+Distinguishing from the MVC pattern, we connect all of the Observables and Observers together and gather all application logics like filtering, sorting and separating, etc in one place. I drew a whole diagram of these logics to show how different it is between using RxSwift and the MVC model.
+<img src="/From-MVC-to-MVVM-C-Step-by-Step/RxSwift_Chain.png" width="100%" margin-left="auto" margin-right="auto"><br>
+
+In same cases, I use _filter_ operator to activate different path in the reactive chain. And using _withLatestFrom_ operator to tigger one event by the other event. Changing Kline datasource is an event emitted from a segment control in the Setting ViewController, and showing the Kline need another event which is changing the symbol name. The _changing datasource event_ will trigger the _changing symbol name_ event. 
+
+<img src="/From-MVC-to-MVVM-C-Step-by-Step/RxSwift_Chain_2.png" width="100%" margin-left="auto" margin-right="auto"><br>
+
+### Interaction between view controllers from delegate to obserable and observer
+
+#### The Problems I met
+##### How to exchange and save the statuses between the view controllers, My target is eliminating all delegates, but the statuses are still exist. 
 1. local status
 2. share between two view controllers, one will be released, the other is alway keeping in the memory
 3. share the statuses between more than two view controllers, or these two view controllers will all be released 
 
-#### How to initialize the RxSwift reactive chain when some of these view controllers are created dynamically
+##### How to initialize the RxSwift reactive chain when some of these view controllers are created dynamically
 
-#### How to distinguish the variables of views and the variables of view models
+##### How to distinguish the variables of views and the variables of view models
 
-#### How to deal with filesystem API, they are just like the networking API, but they are synchronizaton, so...
-
-#### How to handle the error events emmited from networking API
-1. errro events will terminate the obserable sequence, 
+#####Do we need two way binding
 
 
-#### How to use the withLatestFrom operator
 
-#### about two way binding
-
-#### About RxDataSource
-
-#### How to encapsulate networking API using RxSwift
 
 

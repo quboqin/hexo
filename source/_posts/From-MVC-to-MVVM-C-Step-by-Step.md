@@ -829,19 +829,112 @@ In same cases, I use _filter_ operator to activate different path in the reactiv
 
 <img src="/From-MVC-to-MVVM-C-Step-by-Step/RxSwift_Chain_2.png" width="100%" margin-left="auto" margin-right="auto"><br>
 
-### Interaction between view controllers from delegate to obserable and observer
+#### Interaction between view controllers from delegate to obserable and observer
+After I established the reactive chains to replace the delegates in the view controllers, I deleted some of properties who refer to the data models in the Price View Controler and Favorite View Controller. And I don't need to keep the intermedia statuses for the appplication logics, but It doesn't mean we can remove all statuses, these statuses are useful in exchanging informations between view controllers. If the object owned by the view controller, I think you can use the Observable in the object through the property directly. But most of time, I need to create a stub in the target view controller like the Price View Controller, and bind this stub with the Observable in the source view controller like the Setting ViewController. When the SettingViewController is removed from the memory, the Variable showCoinOnly will be disconnected from its source and sleep. When the SettingViewController is created again, the connection will be rebuilt, and the showCoinOnly will resend the event from the SettingViewController to the filtering logic chain as a router.
+
+<img src="/From-MVC-to-MVVM-C-Step-by-Step/RxSwift_Chain_3.png" width="100%" margin-left="auto" margin-right="auto"><br>
+
+In this diagram, you can see I create a two way bind in the SettingViewCOntroller, the showCoinOnly in the PriceViewController will keep the status, when the SettingViewController is created again, the Switch will get the status again. But how to write a 2-way bind is confusing me, I just wrote the code below, but I don't know why it didn't cause the infinitive problem.
+
+``` Swift 
+showCoinOnlySwitch.rx.isOn.changed.debug()
+    .bind(to: _selectShowCoinOnly)
+    .disposed(by: disposeBag)
+
+didSelectShowCoinOnly.debug()
+    .bind(to: showCoinOnlySwitch.rx.isOn)
+    .disposed(by: disposeBag)
+```
+
+And if you want to use 2-way bind in other place, you can create a generic funtion to handle this. 
+
+``` Swift
+infix operator <->
+
+@discardableResult func <-><T>(property: ControlProperty<T>, variable: Variable<T>) -> Disposable {
+    let variableToProperty = variable.asObservable()
+        .bind(to: property)
+
+    let propertyToVariable = property
+        .subscribe(
+            onNext: { variable.value = $0 },
+            onCompleted: { variableToProperty.dispose() }
+    )
+
+    return Disposables.create(variableToProperty, propertyToVariable)
+}
+```
+
 
 #### The Problems I met
-##### How to exchange and save the statuses between the view controllers, My target is eliminating all delegates, but the statuses are still exist. 
-1. local status
-2. share between two view controllers, one will be released, the other is alway keeping in the memory
-3. share the statuses between more than two view controllers, or these two view controllers will all be released 
+##### The scope of a status
+When I implement the application logic, I realize that there are three kinds of status I need to mantain. 
+1. Local Status
+To be honest there is no local status when we use the RxSwift, the RxSwift doesn't keep the status, it just trigger events from the Observables and consume these events by the Observers. I use this terminology in order to distingush the other two statuses. 
+2. Status as a property
+Just like I discuss in the last section, the showCoinOnly in the PriceViewCOntroller keep the status transfered from the SettingViewController. This Variable will share information between two view controllers, one will be released, the other is alway keeping in the memory. In this case I keep the status in the PriceViewcontroller, because, the PriceVIewController will not be released in the application whole life time.
+3. Global status
+But sometimes the two controllers who share inforamtion will all be released. So how can I keep the status like the KLineSource in this application. The KLineSource is produced from the SeetingViewController when a user select the datasource on the segment control, and the KLineSource si consumed by the ExpandViewController to determine which APIs will be called. But these two view controllers will be release at runtime. So where can I keep the status. In this demo example I create a singleton global object to keep this status called KLineSource. 
+
+``` Swift
+
+class KLineSource {
+    static let shared = KLineSource()
+    
+    var dataSource = Variable<DataSource>(DataSource.cryptoCompare)
+    
+    private init() {
+        
+    }
+}
+```
 
 ##### How to initialize the RxSwift reactive chain when some of these view controllers are created dynamically
+Because some of these view controllers will be created dynamically, it bring
+another problem what is the appropriate time to create a view controller, and when to bind the reaction chain. When we create a view controller and send a event to its Observer, it won't get this event if it hasn't band the the Observer first.
 
-##### How to distinguish the variables of views and the variables of view models
+``` Swift
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        segue.destination.transitioningDelegate = self
+        
+        if let navigationController = segue.destination as? SettingsNavigationController,
+            let settingsViewController = navigationController.viewControllers.first as? SettingsViewController {
+    
+            settingsViewController.didSelectShowCoinOnly
+                .bind(to: showCoinOnly)
+                .disposed(by: disposeBag)
+            
+            // FIXED: How to save the status
+            settingsViewController._selectShowCoinOnly.onNext(showCoinOnly.value)
+```
 
-#####Do we need two way binding
+When the seague is triggered, the SettingViewControler will be created, and I will send the ShowCoinOnly status to the SettingViewController. But if I put the binding code in the ViewDidLoad() in the SettingViewController, this event will be discarded because when the event is being sent, the chain hasn't been setup yet. So I need to move the setup logic into awakeFromNib(). And I also need to load the view objects first compulsively like the code below.
+
+``` Swift
+override func awakeFromNib() {
+    super.awakeFromNib()
+    // FIXED: How to save the status..., force load view
+    _ = self.view
+    
+    let closeButton = UIBarButtonItem(title: "Close", style: .plain, target: self, action: nil)
+    self.navigationItem.leftBarButtonItem = closeButton
+    
+    dataSourceSegment.selectedSegmentIndex = KLineSource.shared.dataSource.value.rawValue
+    
+    setupBindings()
+}
+
+override func viewDidLoad() {
+    super.viewDidLoad()
+}
+``` 
+
+It is not very comfortable, I didn't find any other good solution before we use the coordinator. One resposibilty of the coordinator is maintaining the lifecycle of ViewModels and the Controllers. It will be a solution to fix this issue. But before we jump to the MVVM-RxSwit-Coordinator, we must create the ViewModel layer first.
+
+## Create the ViewModels
+
+
 
 
 

@@ -933,6 +933,170 @@ override func viewDidLoad() {
 It is not very comfortable, I didn't find any other good solution before we use the coordinator. One resposibilty of the coordinator is maintaining the lifecycle of ViewModels and the Controllers. It will be a solution to fix this issue. But before we jump to the MVVM-RxSwit-Coordinator, we must create the ViewModel layer first.
 
 ## Create the ViewModels
+View Models are extracted from view controllers. The process of building the view models is separating our application logics from view controllers. The view controller only keep the resposibilities for 
+1. maintain lifecycle of it's views
+2. create a view model
+3. connect inputs and outputs of the view model to the view elements
+   
+<img src="/From-MVC-to-MVVM-C-Step-by-Step/MCVMVMV.gif" width="100%" margin-left="auto" margin-right="auto"><br>   
+   
+View models are not depending on view controllers. They only include application logics, so they are easy to be tested.
+
+One typical view model in our demo is the SettingViewModel.
+
+``` Swift
+class SettingViewModel {
+    // MARK: - Inputs
+    let selectDataSource: AnyObserver<DataSource>
+    let selectShowCoinOnly: AnyObserver<Bool>
+    let removeMyFavorites: AnyObserver<Bool>
+    let cancel: AnyObserver<Void>
+    
+    // MARK: - Status
+    
+    // MARK: - Outputs
+    let didSelectDataSource : Observable<DataSource>
+    let didSelectShowCoinOnly: Observable<Bool>
+    let didRemoveMyFavorites: Observable<Bool>
+    let didCancel: Observable<Void>
+    
+    init() {
+        let _selectShowCoinOnly = BehaviorSubject<Bool>(value: false)
+        self.selectShowCoinOnly = _selectShowCoinOnly.asObserver()
+        self.didSelectShowCoinOnly = _selectShowCoinOnly.asObservable()
+        
+        let _removeMyFavorites = PublishSubject<Bool>()
+        self.removeMyFavorites = _removeMyFavorites.asObserver()
+        self.didRemoveMyFavorites = _removeMyFavorites.asObservable()
+        
+        let _cancel = PublishSubject<Void>()
+        self.cancel = _cancel.asObserver()
+        self.didCancel = _cancel.asObservable()
+        
+        let _selectDataSource = BehaviorSubject<DataSource>(value: DataSource.cryptoCompare)
+        self.selectDataSource = _selectDataSource.asObserver()
+        self.didSelectDataSource = _selectDataSource.asObservable()
+    }
+}
+```
+
+We don't have the coordinator yet, so the SettingViewController is still responsable for creating it's view model and connecting the inputs and outputs of the view model to some view controls and inputs and outputs of other view controllers.
+
+If we take a picture of the SettingViewModel, we can get the diagram below:
+
+<img src="/From-MVC-to-MVVM-C-Step-by-Step/ViewModel2.png" width="100%" margin-left="auto" margin-right="auto"><br> 
+
+In this diagram, you can see the main logic on the client side is included in the PriceViewModel. This view model is just one class, and rely on any other views and view controllers. So we can write a test for it easily. 
+
+## The Fininal Step, Build a coordinator tree.
+I call it as a coordinator tree, because, all of our coordinators which corresponds their view controllers, and have parent-children relationship like view controllers. 
+
+The top node of this tree is the AppCoordinator, it contains two coordinators, one is PriceCoordinator and the other FavoriteCoordinator.
+
+All coordinators are inherited from BaseCoordinator. The main job of a coordinator is 
+1. create a view model 
+2. ceeate a view controller
+3. inject the view model into the view controller
+4. maintain the navigation between view controllers.
+
+The fourth one can be separated some sub-steps
+1. creat a target coordinator as an observable object
+2. flatmap some of source coordinator obserable into the target observable, this process is most like calling a networking service. 
+3. bind the source coordinator input onto the target coordinator, so we can get the result from the target coordinator. 
+
+The whole process looks like calling a asynchronization function, when we start a new coordinator. Every coordinator must comfirm the start() function. In this funtion the coordinator returns an Observable object for it's source coordinator.
+
+``` Swift
+ override func start() -> Observable<Void> {
+        let navigationViewController0 = rootViewController.viewControllers![0] as! UINavigationController
+        let viewController = navigationViewController0.viewControllers[0] as! PricesViewController
+        
+        let navigationViewController1 = rootViewController.viewControllers![1] as! UINavigationController
+        let favoritesViewController = navigationViewController1.viewControllers[0] as? FavoritesViewController
+        
+        let viewModel = PriceViewModel()
+        viewController.viewModel = viewModel
+        
+        let showSettings = viewModel.showSettings
+            .flatMap { [weak self] _ -> Observable<SettingCoordinationResult> in
+                guard let `self` = self else { return .empty() }
+                return self.showSettings(on: viewController, with: viewModel)
+            }.share()
+        
+        showSettings
+            .filter({
+                if case .kLineDataSource = $0 {
+                    return true
+                }
+                return false
+            })
+            .map {
+                if case .kLineDataSource(let value) = $0 {
+                    return value
+                }
+                return DataSource.cryptoCompare
+            }
+            .bind(to: GlobalStatus.shared.klineDataSource)
+            .disposed(by: disposeBag)
+            
+        showSettings
+            .filter({
+                if case .showCoinOnly = $0 {
+                    return true
+                }
+                return false
+            })
+            .map {
+                if case .showCoinOnly(let value) = $0 {
+                    return value
+                }
+                return false
+            }
+            .bind(to: viewModel.showCoinOnly)
+            .disposed(by: disposeBag)
+        
+        showSettings
+            .filter({
+                if case .removeMyFavorites = $0 {
+                    return true
+                }
+                return false
+            })
+            .map {
+                if case .removeMyFavorites(let value) = $0 {
+                    return value
+                }
+                return false
+            }
+            .bind(to: (favoritesViewController?.viewModel.deleteFavoriteList)!)
+            .disposed(by: disposeBag)
+        
+        
+        window.makeKeyAndVisible()
+        
+        return Observable.never()
+    }
+    
+    private func showSettings(on rootViewController: UIViewController, with rootViewModel: PriceViewModel) -> Observable<SettingCoordinationResult> {
+        let settingsCoordinator = SettingCoordinator(rootViewController: rootViewController, rootViewModel: rootViewModel)
+        return coordinate(to: settingsCoordinator)
+    }
+```
+
+The relationship between these objects is showed in the figure below:
+
+<img src="/From-MVC-to-MVVM-C-Step-by-Step/Coordinator_ Asynchronous_Call.png" width="100%" margin-left="auto" margin-right="auto"><br> 
+
+So far we have finished our demo example. It is not a real project, but it is also not very simple. I show you how to refactor the code from MVC pattern to MVVM-Coordinator pattern. And this example also includes some key points to write a iOS application, such as networking service, autolayout, ...
+
+I hope it is helpful for the newbs in iOS develepment.
+
+
+
+
+
+
+
 
 
 

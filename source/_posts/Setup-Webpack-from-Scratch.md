@@ -1,7 +1,9 @@
 ---
 title: Setup Webpack from Scratch
 date: 2018-12-31 16:25:26
-tags:
+tags: [__dirname, path, ../, ./, require, readFileSync]
+categories:
+  - Nodejs
 ---
 
 ## What is the differnce between __dirname and ./ in Nodejs

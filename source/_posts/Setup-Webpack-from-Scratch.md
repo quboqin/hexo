@@ -13,7 +13,7 @@ Three different situations need to be considered.
 3. The paths in `require` are alway relative to these files.
 FOr more detail information, here is the [reference link](https://stackoverflow.com/questions/8131344/what-is-the-difference-between-dirname-and-in-node-js) on Stackoverflow.   
 
-I give a example below, our directory is like this:
+I give an example below, our directory is like this:
 ```
 src/server
 src

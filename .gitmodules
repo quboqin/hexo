@@ -4,3 +4,6 @@
 [submodule "themes/next"]
 	path = themes/next
 	url = git@github:quboqin/hexo-theme-next.git
+[submodule "themes/next-reloaded"]
+	path = themes/next-reloaded
+	url = https://github.com/theme-next/hexo-theme-next

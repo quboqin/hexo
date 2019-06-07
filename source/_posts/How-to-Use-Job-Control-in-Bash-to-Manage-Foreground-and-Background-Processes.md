@@ -9,7 +9,7 @@ categories:
 ### Introduction
 We usually encounter the following situation when we use SSH to log on to a remote computer or a server, then start a task in the foreground, and the task is more complex and bigger, it will not be finished in a short peroid of time, but we need to close the terminal for some reasons. If we close the terminal, the process will be terminated too. We don't want to stop it right now, how can we handle this problem?
 
-Before dealing with this case, you must have some background knowledge about job control in Bash. Let us create a bash job first:
+Before dealing with this case, you must have a knowledge of job control in Bash. Let us create a bash job first:
 ``` bash
 ping -i 5 google.com
 ```

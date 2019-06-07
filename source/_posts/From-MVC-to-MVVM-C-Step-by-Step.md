@@ -695,7 +695,7 @@ _selectRemoveMyFavorites.subscribe(onNext: {
 ```
 
 #### How to handle the error events emmited from networking API, Materialize and Dematerialize 
-Our networking APIs have not the ability to handle the errors, they just conduct these errors from the bottom to the applcation layer. How to handle these errors is depended on uour application logic. Without RxSwift, every thing is ok. But when we convert the callback function into Observable onject, the chain will be broken, because I send the errors through the onError event. After the onError event is sent, the Observable object will be terminated, this is not we want, but we still want to get these error messages in the application layer. How can we get them? In RxSwift, they provide a mechanism called _Materialize_. It add a shell on the onError event, then this event turns into a normal event, and the error event become a value inside the normal event. Then we can use a filter operator to catch the error event when it happans. If it is not a error event, then the filter will _dematerialize_ the event, we will get the original data again.
+Our networking APIs have not the ability to handle the errors, they just conduct these errors from the bottom to the applcation layer. How to handle these errors is depended on our application logic. Without RxSwift, every thing is ok. But when we convert the callback function into Observable onject, the chain will be broken, because I send the errors through the onError event. After the onError event is sent, the Observable object will be terminated, this is not we want, but we still want to get these error messages in the application layer. How can we get them? In RxSwift, they provide a mechanism called _Materialize_. It add a shell on the onError event, then this event turns into a normal event, and the error event become a value inside the normal event. Then we can use a filter operator to catch the error event when it happans. If it is not a error event, then the filter will _dematerialize_ the event, we will get the original data again.
 
 ``` Swift
 huobiReload.withLatestFrom(symbol.asObservable())
@@ -995,7 +995,7 @@ The top node of this tree is the AppCoordinator, it contains two coordinators, o
 
 All coordinators are inherited from BaseCoordinator. The main job of a coordinator is 
 1. create a view model 
-2. ceeate a view controller
+2. create a view controller
 3. inject the view model into the view controller
 4. maintain the navigation between view controllers.
 
